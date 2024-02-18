@@ -3,15 +3,18 @@ package com.example.cbtapp.exercises.situationExercise;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
+import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,26 +23,26 @@ public class SituationActivity extends AppCompatActivity {
 
     String sitText;
     LocalDate date;
-    ArrayList<String> feelings = new ArrayList<>();
-    ArrayList<Integer> feelingIntensities = new ArrayList<>();
-    ArrayList<String> thoughts = new ArrayList<>();
-    ArrayList<Integer> thoughtIntensities = new ArrayList<>();
+    ArrayList<Feel> feelings = new ArrayList<>();
+    ArrayList<Feel> thoughts = new ArrayList<>();
     int currentStep;
+    Button nextButton;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_situation);
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         currentStep = 1;
 
-        Button nextButton = findViewById(R.id.nextButton);
+        nextButton = findViewById(R.id.nextButton);
         nextButton.setOnClickListener(view -> {
 
             Class switchTo = null;
 
-            switch (currentStep){
+            switch (currentStep) {
                 case 1:
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         date = LocalDate.now();
@@ -82,7 +85,7 @@ public class SituationActivity extends AppCompatActivity {
 
             Class switchTo = null;
 
-            switch (currentStep){
+            switch (currentStep) {
                 case 1:
                     Intent intent = new Intent(this, ExercisesHome.class);
                     startActivity(intent);
@@ -104,6 +107,11 @@ public class SituationActivity extends AppCompatActivity {
                     nextButton.setText("Next");
                     currentStep--;
                     break;
+                case 9:
+                    switchTo = Situation5.class;
+                    nextButton.setVisibility(View.VISIBLE);
+                    currentStep--;
+                    break;
             }
 
             if (switchTo != null) {
@@ -114,7 +122,16 @@ public class SituationActivity extends AppCompatActivity {
                         .commit();
             }
         });
+    }
 
+    public void switchChallengeFragment(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, SituationChallenge.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null) // Name can be null
+                .commit();
+        currentStep = 9;
+        nextButton.setVisibility(View.GONE);
     }
 
     public void showTip(String tips) {
@@ -131,39 +148,23 @@ public class SituationActivity extends AppCompatActivity {
         return date;
     }
 
-    public ArrayList<String> getFeelings() {
+    public void setFeelings(ArrayList<Feel> feelings) {
+        this.feelings = feelings;
+    }
+
+    public void setThoughts(ArrayList<Feel> thoughts) {
+        this.thoughts = thoughts;
+    }
+
+    public ArrayList<Feel> getFeelings() {
         return feelings;
     }
 
-    public ArrayList<Integer> getFeelingIntensities() {
-        return feelingIntensities;
-    }
-
-    public ArrayList<String> getThoughts() {
+    public ArrayList<Feel> getThoughts() {
         return thoughts;
-    }
-
-    public ArrayList<Integer> getThoughtIntensities() {
-        return thoughtIntensities;
     }
 
     public void setSitText(String sitText) {
         this.sitText = sitText;
-    }
-
-    public void setFeelings(ArrayList<String> fs){
-        feelings = fs;
-    }
-
-    public void setFeelingIntensities(ArrayList<Integer> is){
-        feelingIntensities = is;
-    }
-
-    public void setThoughts(ArrayList<String> thoughts) {
-        this.thoughts = thoughts;
-    }
-
-    public void setThoughtIntensities(ArrayList<Integer> thoughtIntensities) {
-        this.thoughtIntensities = thoughtIntensities;
     }
 }

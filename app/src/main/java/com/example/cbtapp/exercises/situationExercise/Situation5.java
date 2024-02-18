@@ -42,20 +42,20 @@ public class Situation5 extends Fragment {
         text += "Situation: " + sitAct.getSitText() +
                 "\n\nFeelings: ";
 
-        ArrayList<String> feelings = sitAct.getFeelings();
-        ArrayList<Integer> feelingIntensities = sitAct.getFeelingIntensities();
+        ArrayList<Feel> feelings = sitAct.getFeelings();
         for (int i = 0; i < feelings.size(); i++) {
-            text += "\n" + feelings.get(i) + "\t\t\t\t\t\t\t\t\tIntensity: " + feelingIntensities.get(i);
+            text += "\n" + feelings.get(i).getText() + "\t\t\t\t\t\t\t\t\tIntensity: " + feelings.get(i).getIntensity();
         }
 
         text += "\n\nThoughts:";
-        ArrayList<String> thoughts = sitAct.getThoughts();
-        ArrayList<Integer> thoughtIntensities = sitAct.getThoughtIntensities();
+        ArrayList<Feel> thoughts = sitAct.getThoughts();
         for (int i = 0; i < thoughts.size(); i++) {
-            text += "\n" + thoughts.get(i) + "\t\t\t\t\t\t\t\t\tIntensity: " + thoughtIntensities.get(i);
+            text += "\n" + thoughts.get(i).getText() + "\t\t\t\t\t\t\t\t\tIntensity: " + thoughts.get(i).getIntensity();
         }
 
         txtView.setText(text);
+
+        challengeButton.setOnClickListener(view -> sitAct.switchChallengeFragment());
 
         return v;
     }

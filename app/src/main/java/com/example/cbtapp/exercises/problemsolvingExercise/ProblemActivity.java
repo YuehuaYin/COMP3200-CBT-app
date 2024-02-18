@@ -12,6 +12,7 @@ import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
+import com.example.cbtapp.exercises.situationExercise.Feel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,8 +21,7 @@ public class ProblemActivity extends AppCompatActivity {
 
     String problemText;
     LocalDate date;
-    ArrayList<String> feelings = new ArrayList<>();
-    ArrayList<Integer> feelingIntensities = new ArrayList<>();
+    ArrayList<Feel> feelings = new ArrayList<>();
     ArrayList<Solution> solutions = new ArrayList<>();
     int currentStep;
 
@@ -138,20 +138,12 @@ public class ProblemActivity extends AppCompatActivity {
         return date;
     }
 
-    public ArrayList<String> getFeelings() {
+    public ArrayList<Feel> getFeelings() {
         return feelings;
     }
 
-    public ArrayList<Integer> getFeelingIntensities() {
-        return feelingIntensities;
-    }
-
-    public void setFeelings(ArrayList<String> fs){
-        feelings = fs;
-    }
-
-    public void setFeelingIntensities(ArrayList<Integer> is){
-        feelingIntensities = is;
+    public void setFeelings(ArrayList<Feel> feelings) {
+        this.feelings = feelings;
     }
 
     public ArrayList<Solution> getSolutions() {

@@ -34,17 +34,17 @@
             app:layout_constraintTop_toBottomOf="@+id/situationTxt2"
             app:layout_constraintVertical_bias="0.027" />
 
-        <ListView
-            android:id="@+id/listview1"
-            android:layout_width="373dp"
-            android:layout_height="506dp"
-            android:dividerHeight="15dp"
-            android:scrollbarAlwaysDrawVerticalTrack="true"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="370dp"
+            android:layout_height="485dp"
+            android:layout_marginTop="49dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
-            app:layout_constraintVertical_bias="0.681" />
+            app:layout_constraintTop_toTopOf="@+id/button2"
+            app:layout_constraintVertical_bias="0.619" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

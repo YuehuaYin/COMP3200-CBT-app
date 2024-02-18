@@ -54,7 +54,7 @@ public class ThoughtRecord5 extends Fragment {
         ArrayList<Argument> args = thoughtAct.getArguments();
         for (Argument a:args) {
 
-            Spannable word = new SpannableString(a.getText());
+            Spannable word = new SpannableString("\n" + a.getText());
 
             if (a.isFor()){
                 word.setSpan(new ForegroundColorSpan(Color.RED), 0, word.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

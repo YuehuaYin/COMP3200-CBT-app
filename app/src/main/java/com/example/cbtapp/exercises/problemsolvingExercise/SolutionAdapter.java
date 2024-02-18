@@ -14,7 +14,6 @@ public class SolutionAdapter extends RecyclerView.Adapter<SolutionHolder> {
 
     Context context;
     ArrayList<Solution> solutions;
-    Boolean hasNotif;
 
     public SolutionAdapter(Context context, ArrayList<Solution> solutions) {
         this.context = context;

@@ -10,6 +10,14 @@ public class Argument {
         this.text = text;
     }
 
+    public int getType(){
+        if (isFor) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
     public Boolean isFor() {
         return isFor;
     }

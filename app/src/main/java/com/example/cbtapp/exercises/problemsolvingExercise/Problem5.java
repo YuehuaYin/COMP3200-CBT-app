@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.cbtapp.R;
+import com.example.cbtapp.exercises.situationExercise.Feel;
 import com.example.cbtapp.exercises.situationExercise.SituationActivity;
 
 import java.time.format.DateTimeFormatter;
@@ -43,7 +44,14 @@ public class Problem5 extends Fragment {
         }
 
         text += "Problem: " + probAct.getProblemText() +
-            "\n\nSolutions: ";
+                "\n\nFeelings: ";
+
+        ArrayList<Feel> feelings = probAct.getFeelings();
+        for (int i = 0; i < feelings.size(); i++) {
+            text += "\n" + feelings.get(i).getText() + "\t\t\t\t\t\t\t\t\tIntensity: " + feelings.get(i).getIntensity();
+        }
+
+        text += "\n\nSolutions: ";
 
         ArrayList<Solution> solutions = probAct.getSolutions();
         for (Solution s: solutions) {

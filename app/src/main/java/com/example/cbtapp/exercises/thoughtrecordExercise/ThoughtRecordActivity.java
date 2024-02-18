@@ -3,15 +3,18 @@ package com.example.cbtapp.exercises.thoughtrecordExercise;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
+import com.example.cbtapp.exercises.situationExercise.SituationChallenge;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,14 +27,23 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     String balancedThought;
     int balancedBelief = 5;
     int currentStep;
-
+    FragmentManager fragmentManager;
     ArrayList<Argument> arguments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_situation);
-        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras != null) {
+                thoughtText = extras.getString("Thought");
+                belief = extras.getInt("Belief");
+            }
+        }
+
+        fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, ThoughtRecord1.class, null)
@@ -108,6 +120,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
                     break;
                 case 5:
                     switchTo = ThoughtRecord4.class;
+                    nextButton.setText("Next");
                     currentStep--;
                     break;
             }

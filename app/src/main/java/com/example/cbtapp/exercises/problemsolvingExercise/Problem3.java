@@ -11,9 +11,12 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
-import com.example.cbtapp.exercises.situationExercise.CustomAdapter;
+import com.example.cbtapp.exercises.situationExercise.Feel;
+import com.example.cbtapp.exercises.situationExercise.FeelingAdapter;
 
 import java.util.ArrayList;
 
@@ -22,10 +25,9 @@ public class Problem3 extends Fragment {
     View v;
     TextView titleText;
     Button addFeelingButton;
-    ListView listview;
-    ArrayList<String> feelings;
-    ArrayList<Integer> intensities;
-    CustomAdapter adapter;
+    RecyclerView recyclerView;
+    ArrayList<Feel> feelings;
+    FeelingAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,19 +39,16 @@ public class Problem3 extends Fragment {
         titleText.setText("How does this problem make you feel?");
 
         feelings = ((ProblemActivity)getActivity()).getFeelings();
-        intensities = ((ProblemActivity)getActivity()).getFeelingIntensities();
 
-        listview = v.findViewById(R.id.listview1);
-        adapter = new CustomAdapter(getContext(), feelings, intensities);
+        recyclerView = v.findViewById(R.id.recyclerview);
+        adapter = new FeelingAdapter(getContext(), feelings);
         addFeelingComponents();
 
         addFeelingButton = v.findViewById(R.id.button2);
         addFeelingButton.setOnClickListener(view -> {
             updateVars();
 
-            feelings.add("Feeling " + (feelings.size() + 1));
-            intensities.add(5);
-
+            feelings.add(new Feel("Feeling " + (feelings.size() + 1), 5));
             addFeelingComponents();
         });
 
@@ -58,17 +57,14 @@ public class Problem3 extends Fragment {
 
     void updateVars(){
         feelings.clear();
-        intensities.clear();
         EditText et;
         SeekBar sb;
 
-        for (int i = 0; i < listview.getCount(); i++) {
-            v = listview.getChildAt(i);
+        for (int i = 0; i < recyclerView.getChildCount(); i++) {
+            v = recyclerView.getChildAt(i);
             et = (EditText) v.findViewById(R.id.editTextfeeling);
-            feelings.add(et.getText().toString());
-
             sb = v.findViewById(R.id.seekBar3);
-            intensities.add(sb.getProgress());
+            feelings.add(new Feel(et.getText().toString(), sb.getProgress()));
         }
     }
 
@@ -76,12 +72,12 @@ public class Problem3 extends Fragment {
     public void onStop() {
         updateVars();
         ((ProblemActivity) getActivity()).setFeelings(feelings);
-        ((ProblemActivity) getActivity()).setFeelingIntensities(intensities);
         super.onStop();
     }
 
     public void addFeelingComponents(){
-        listview.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 }

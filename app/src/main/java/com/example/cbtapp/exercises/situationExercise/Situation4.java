@@ -10,9 +10,10 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
-import com.example.cbtapp.exercises.TipDialog;
 
 import java.util.ArrayList;
 
@@ -20,10 +21,9 @@ public class Situation4 extends Fragment {
     View v;
     Button addthoughtButton;
     Button tipButton;
-    ListView listview;
-    ArrayList<String> thoughts;
-    ArrayList<Integer> intensities;
-    CustomAdapter adapter;
+    RecyclerView recyclerView;
+    ArrayList<Feel> thoughts;
+    FeelingAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,19 +32,16 @@ public class Situation4 extends Fragment {
         v = inflater.inflate(R.layout.fragment_situation4, container, false);
 
         thoughts = ((SituationActivity)getActivity()).getThoughts();
-        intensities = ((SituationActivity)getActivity()).getThoughtIntensities();
 
-        listview = v.findViewById(R.id.listview1);
-        adapter = new CustomAdapter(getContext(), thoughts, intensities);
+        recyclerView = v.findViewById(R.id.recyclerview);
+        adapter = new FeelingAdapter(getContext(), thoughts);
         addThoughtComponents();
 
         addthoughtButton = v.findViewById(R.id.button2);
         addthoughtButton.setOnClickListener(view -> {
             updateVars();
 
-            thoughts.add("Thought " + (thoughts.size() + 1));
-            intensities.add(5);
-
+            thoughts.add(new Feel("Thought " + (thoughts.size() + 1), 5));
             addThoughtComponents();
         });
 
@@ -58,17 +55,14 @@ public class Situation4 extends Fragment {
 
     void updateVars(){
         thoughts.clear();
-        intensities.clear();
         EditText et;
         SeekBar sb;
 
-        for (int i = 0; i < listview.getCount(); i++) {
-            v = listview.getChildAt(i);
+        for (int i = 0; i < recyclerView.getChildCount(); i++) {
+            v = recyclerView.getChildAt(i);
             et = (EditText) v.findViewById(R.id.editTextfeeling);
-            thoughts.add(et.getText().toString());
-
             sb = v.findViewById(R.id.seekBar3);
-            intensities.add(sb.getProgress());
+            thoughts.add(new Feel(et.getText().toString(), sb.getProgress()));
         }
     }
 
@@ -76,12 +70,12 @@ public class Situation4 extends Fragment {
     public void onStop() {
         updateVars();
         ((SituationActivity) getActivity()).setThoughts(thoughts);
-        ((SituationActivity) getActivity()).setThoughtIntensities(intensities);
         super.onStop();
     }
 
     public void addThoughtComponents(){
-        listview.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 }
