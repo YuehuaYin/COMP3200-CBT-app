@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<log>
+    <entry>
+        <date date = "27/02/2024"/>
+
+        <activity>
+            <name name="Thought Record"/>
+            <text text="text"/>
+        </activity>
+
+        <activity>
+            <name name="Problem Solving"/>
+            <text text="text"/>
+        </activity>
+    </entry>
+</log>

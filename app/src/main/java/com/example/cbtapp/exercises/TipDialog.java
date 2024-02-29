@@ -14,11 +14,8 @@ public class TipDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Tips:").setMessage(message).setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        builder.setTitle("Tips:").setMessage(message).setPositiveButton("OK", (dialogInterface, i) -> {
 
-            }
         });
         return builder.create();
     }

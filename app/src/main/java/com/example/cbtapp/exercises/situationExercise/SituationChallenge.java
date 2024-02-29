@@ -1,5 +1,7 @@
 package com.example.cbtapp.exercises.situationExercise;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
+import com.example.cbtapp.stats.Stats;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class SituationChallenge extends Fragment implements SelectListener{
@@ -50,6 +54,15 @@ public class SituationChallenge extends Fragment implements SelectListener{
 
     @Override
     public void onItemClicked(int position) {
+        Stats.addExercisesDone();
+        Stats.addPoints(100);
+        try {
+            FileOutputStream writer = sitAct.openFileOutput("StatsFile.txt", MODE_PRIVATE);
+            Stats.writeStats(writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Intent intent = new Intent(sitAct, ThoughtRecordActivity.class);
         intent.putExtra("Thought", thoughts.get(position).getText());
         intent.putExtra("Belief", thoughts.get(position).getIntensity());

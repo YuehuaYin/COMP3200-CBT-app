@@ -13,7 +13,11 @@ import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.situationExercise.Feel;
+import com.example.cbtapp.stats.Stats;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -67,6 +71,15 @@ public class ProblemActivity extends AppCompatActivity {
                     currentStep++;
                     break;
                 case 5:
+                    Stats.addExercisesDone();
+                    Stats.addPoints(100);
+                    try {
+                        FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
+                        Stats.writeStats(writer);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
                     break;

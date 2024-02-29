@@ -11,9 +11,11 @@ import android.widget.LinearLayout;
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
+import com.example.cbtapp.activityLog.CalenderLog;
 import com.example.cbtapp.exercises.problemsolvingExercise.ProblemActivity;
 import com.example.cbtapp.exercises.situationExercise.SituationActivity;
 import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
+import com.example.cbtapp.stats.StatsPage;
 
 public class ExercisesHome extends AppCompatActivity {
     SwipeListener swipeListener;
@@ -41,6 +43,10 @@ public class ExercisesHome extends AppCompatActivity {
             startActivity(intent);
         });
 
+        setUpNavbar();
+    }
+
+    void setUpNavbar(){
         navBar = findViewById(R.id.navBar);
 
         Button homeButton = navBar.findViewById(R.id.navHome);
@@ -49,9 +55,21 @@ public class ExercisesHome extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button activityButton = navBar.findViewById(R.id.navExercises);
-        activityButton.setOnClickListener(view -> {
+        Button exercisesButton = navBar.findViewById(R.id.navExercises);
+        exercisesButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, ExercisesHome.class);
+            startActivity(intent);
+        });
+
+        Button statsButton = navBar.findViewById(R.id.navStats);
+        statsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, StatsPage.class);
+            startActivity(intent);
+        });
+
+        Button activityButton = navBar.findViewById(R.id.navActivity);
+        activityButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, CalenderLog.class);
             startActivity(intent);
         });
 

@@ -15,12 +15,15 @@ import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
+import com.example.cbtapp.stats.Stats;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SituationActivity extends AppCompatActivity {
-
+    File activityLog;
     String sitText;
     LocalDate date;
     ArrayList<Feel> feelings = new ArrayList<>();
@@ -65,6 +68,15 @@ public class SituationActivity extends AppCompatActivity {
                     currentStep++;
                     break;
                 case 5:
+                    Stats.addExercisesDone();
+                    Stats.addPoints(100);
+                    try {
+                        FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
+                        Stats.writeStats(writer);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
                     break;
@@ -138,6 +150,10 @@ public class SituationActivity extends AppCompatActivity {
         TipDialog tipDialog = new TipDialog();
         tipDialog.setMessage(tips);
         tipDialog.show(getSupportFragmentManager(), "tip dialog");
+    }
+
+    public void writeToLog(String text){
+
     }
 
     public String getSitText() {
