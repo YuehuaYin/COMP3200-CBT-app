@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FurtherSupport">
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="433dp"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingTop="30dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="25dp"
+            android:text="Further Support"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingTop="15dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="25dp"
+            android:text="If you are experiencing suicidal thoughts or need help urgently, call 999 now."
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:text="If you found this app useful and would like further support consider:"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:text="Contacting your GP"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:text="Calling the Samaritans at 116123"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="10dp"
+            android:text="NHS Talking Therapies"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+
+    <include layout="@layout/nav_bar" />
+</androidx.constraintlayout.widget.ConstraintLayout>

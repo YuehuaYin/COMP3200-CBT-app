@@ -7,6 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F67E7E"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/currentpoints"
+            android:layout_width="218dp"
+            android:layout_height="match_parent"
+            android:paddingStart="5dp"
+            android:paddingTop="10dp"
+            android:text="Points: XXXX"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/dailybonus"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:backgroundTint="#F67E7E"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:text="Daily bonus +10"
+            android:textAlignment="textStart"
+            android:textSize="18sp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
@@ -18,4 +50,5 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <include layout="@layout/nav_bar"></include>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

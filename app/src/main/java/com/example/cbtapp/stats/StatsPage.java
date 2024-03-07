@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.cbtapp.FurtherSupport;
 import com.example.cbtapp.HomeActivity;
+import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
 import com.example.cbtapp.activityLog.CalenderLog;
@@ -18,6 +20,7 @@ import com.example.cbtapp.activityLog.XMLParser;
 import com.example.cbtapp.exercises.ExercisesHome;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -49,7 +52,9 @@ public class StatsPage extends AppCompatActivity {
 
         updateStats();
 
-        setUpNavbar();
+        navBar = findViewById(R.id.navBar);
+        NavBar.setUpNavbar(this, navBar);
+        swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
 
         Button resetButton = findViewById(R.id.button12);
         resetButton.setOnClickListener(view -> resetDataButton());
@@ -85,6 +90,11 @@ public class StatsPage extends AppCompatActivity {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
+            Element rootElement = doc.createElement("log");
+            doc.appendChild(rootElement);
+            Element testElement = doc.createElement("Date");
+            testElement.setAttribute("date", "29/02/24");
+            rootElement.appendChild(testElement);
             XMLParser.exportXmlFile(doc, activityLog);
         } catch (Exception e){
             e.printStackTrace();
@@ -94,41 +104,11 @@ public class StatsPage extends AppCompatActivity {
     }
 
     void updateStats(){
-        pointsText.setText("Points: " + Stats.points);
-        exercisesText.setText("CBT exercises completed: " + Stats.exercisesDone);
-        tasksText.setText("Tasks completed: " + Stats.tasksCompleted);
+        pointsText.setText("Current points: " + Stats.currentPoints);
+        exercisesText.setText("Total points earned: " + Stats.totalPoints);
+        tasksText.setText("CBT exercises completed: " + Stats.exercisesDone);
         currentStreakText.setText("Current streak: " + Stats.currentStreak);
         highestStreakText.setText("Highest streak: " + Stats.highestStreak);
-    }
-
-    void setUpNavbar(){
-        navBar = findViewById(R.id.navBar);
-
-        Button homeButton = navBar.findViewById(R.id.navHome);
-        homeButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        });
-
-        Button exercisesButton = navBar.findViewById(R.id.navExercises);
-        exercisesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ExercisesHome.class);
-            startActivity(intent);
-        });
-
-        Button statsButton = navBar.findViewById(R.id.navStats);
-        statsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, StatsPage.class);
-            startActivity(intent);
-        });
-
-        Button activityButton = navBar.findViewById(R.id.navActivity);
-        activityButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, CalenderLog.class);
-            startActivity(intent);
-        });
-
-        swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
     }
 
 }

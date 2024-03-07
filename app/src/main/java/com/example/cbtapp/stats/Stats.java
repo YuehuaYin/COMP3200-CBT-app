@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Stats {
-    public static int points;
-    public static int tasksCompleted;
+    public static int totalPoints;
+    public static int currentPoints;
+    //public static int tasksCompleted;
     public static int exercisesDone;
     public static int currentStreak;
     public static int highestStreak;
+    public static int dailyBonusClaimed;
 
     public static void readStats (File statsFile) {
         try {
@@ -19,22 +21,21 @@ public class Stats {
             FileInputStream reader = new FileInputStream(statsFile);
             reader.read(content);
             String[] strings = new String(content).split(" ");
-            points = Integer.parseInt(strings[0]);
-            tasksCompleted = Integer.parseInt(strings[1]);
+            currentPoints = Integer.parseInt(strings[0]);
+            totalPoints = Integer.parseInt(strings[1]);
             exercisesDone = Integer.parseInt(strings[2]);
             currentStreak = Integer.parseInt(strings[3]);
             highestStreak = Integer.parseInt(strings[4]);
+            //dailyBonusClaimed = 0;
+            dailyBonusClaimed = Integer.parseInt(strings[5]);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void addPoints(int p){
-        points += p;
-    }
-
-    public static void addTaskCompleted(){
-        tasksCompleted += 1;
+        currentPoints += p;
+        totalPoints += p;
     }
 
     public static void addExercisesDone(){
@@ -50,16 +51,24 @@ public class Stats {
         currentStreak = 0;
     }
 
+    public static void claimDaily(){
+        dailyBonusClaimed = 1;
+    }
+
+    public static void resetDaily(){
+        dailyBonusClaimed = 0;
+    }
+
     public static void resetStats(){
-        points = 0;
-        tasksCompleted = 0;
+        currentPoints = 0;
+        totalPoints = 0;
         exercisesDone = 0;
         currentStreak = 0;
         highestStreak = 0;
     }
 
     public static void writeStats(FileOutputStream writer) throws IOException {
-        String toWrite = points + " " + tasksCompleted + " " + exercisesDone + " " + currentStreak + " " + highestStreak;
+        String toWrite = currentPoints + " " + totalPoints + " " + exercisesDone + " " + currentStreak + " " + highestStreak + " " + dailyBonusClaimed;
         writer.write((toWrite).getBytes());
         writer.close();
     }

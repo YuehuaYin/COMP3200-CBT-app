@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.cbtapp.HomeActivity;
+import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
 import com.example.cbtapp.activityLog.CalenderLog;
@@ -43,36 +44,8 @@ public class ExercisesHome extends AppCompatActivity {
             startActivity(intent);
         });
 
-        setUpNavbar();
-    }
-
-    void setUpNavbar(){
         navBar = findViewById(R.id.navBar);
-
-        Button homeButton = navBar.findViewById(R.id.navHome);
-        homeButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        });
-
-        Button exercisesButton = navBar.findViewById(R.id.navExercises);
-        exercisesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ExercisesHome.class);
-            startActivity(intent);
-        });
-
-        Button statsButton = navBar.findViewById(R.id.navStats);
-        statsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, StatsPage.class);
-            startActivity(intent);
-        });
-
-        Button activityButton = navBar.findViewById(R.id.navActivity);
-        activityButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, CalenderLog.class);
-            startActivity(intent);
-        });
-
+        NavBar.setUpNavbar(this, navBar);
         swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
     }
 }

@@ -1,43 +1,60 @@
 package com.example.cbtapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cbtapp.activityLog.CalenderLog;
-import com.example.cbtapp.activityLog.XMLParser;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.stats.Stats;
 import com.example.cbtapp.stats.StatsPage;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 public class HomeActivity extends AppCompatActivity {
-    Document log;
-    Element rootElement;
     SwipeListener swipeListener;
     LinearLayout navBar;
+    Button claimDaily;
+    TextView currentPoints;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        setUpNavbar();
+        navBar = findViewById(R.id.navBar);
+        NavBar.setUpNavbar(this, navBar);
+        swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
 
         File path = getApplicationContext().getFilesDir();
         path.mkdirs();
 
         Stats.readStats(new File(path, "StatsFile.txt"));
+
+        currentPoints = findViewById(R.id.currentpoints);
+        updateCurrentPoints();
+
+        claimDaily = findViewById(R.id.dailybonus);
+        claimDaily.setOnClickListener(view -> {
+            Stats.addPoints(10);
+            try {
+                Stats.resetStats();
+                Stats.claimDaily();
+                updateDailyButton();
+                FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
+                Stats.writeStats(writer);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         /**
         File activityLog = new File(path, "ActivityLog.xml");
@@ -58,34 +75,15 @@ public class HomeActivity extends AppCompatActivity {
          **/
     }
 
-    void setUpNavbar(){
-        navBar = findViewById(R.id.navBar);
+    void updateDailyButton(){
+        if (Stats.dailyBonusClaimed == 1) {
+            claimDaily.setEnabled(false);
+            claimDaily.setTextColor(Color.GRAY);
+        }
+    }
 
-        Button homeButton = navBar.findViewById(R.id.navHome);
-        homeButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        });
-
-        Button exercisesButton = navBar.findViewById(R.id.navExercises);
-        exercisesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ExercisesHome.class);
-            startActivity(intent);
-        });
-
-        Button statsButton = navBar.findViewById(R.id.navStats);
-        statsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, StatsPage.class);
-            startActivity(intent);
-        });
-
-        Button activityButton = navBar.findViewById(R.id.navActivity);
-        activityButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, CalenderLog.class);
-            startActivity(intent);
-        });
-
-        swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
+    void updateCurrentPoints(){
+        currentPoints.setText("Points: " + Stats.currentPoints);
     }
 
     public  void addNewLog(){
