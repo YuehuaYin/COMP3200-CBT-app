@@ -3,25 +3,17 @@ package com.example.cbtapp.stats;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.cbtapp.FurtherSupport;
-import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
-import com.example.cbtapp.activityLog.CalenderLog;
-import com.example.cbtapp.activityLog.XMLParser;
-import com.example.cbtapp.exercises.ExercisesHome;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -82,21 +74,6 @@ public class StatsPage extends AppCompatActivity {
             FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
             Stats.writeStats(writer);
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        File activityLog = new File(path, "ActivityLog.xml");
-        try {
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-            Document doc = docBuilder.newDocument();
-            Element rootElement = doc.createElement("log");
-            doc.appendChild(rootElement);
-            Element testElement = doc.createElement("Date");
-            testElement.setAttribute("date", "29/02/24");
-            rootElement.appendChild(testElement);
-            XMLParser.exportXmlFile(doc, activityLog);
-        } catch (Exception e){
             e.printStackTrace();
         }
 

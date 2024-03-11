@@ -16,6 +16,9 @@
         android:theme="@style/Theme.CBTApp"
         tools:targetApi="31">
         <activity
+            android:name=".activityLog.Log"
+            android:exported="false" />
+        <activity
             android:name=".FurtherSupport"
             android:exported="false" />
         <activity

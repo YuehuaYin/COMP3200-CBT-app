@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
+import com.example.cbtapp.activityLog.DbCmd;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
@@ -23,9 +24,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SituationActivity extends AppCompatActivity {
-    File activityLog;
     String sitText;
     LocalDate date;
+    String content;
     ArrayList<Feel> feelings = new ArrayList<>();
     ArrayList<Feel> thoughts = new ArrayList<>();
     int currentStep;
@@ -76,6 +77,8 @@ public class SituationActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    DbCmd.saveActivityLog(date, "situation", content, this);
 
                     Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
@@ -152,8 +155,8 @@ public class SituationActivity extends AppCompatActivity {
         tipDialog.show(getSupportFragmentManager(), "tip dialog");
     }
 
-    public void writeToLog(String text){
-
+    public void setContent(String content){
+        this.content = content;
     }
 
     public String getSitText() {

@@ -12,7 +12,10 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.cbtapp.R;
+import com.example.cbtapp.activityLog.ActivityLog;
+import com.example.cbtapp.activityLog.AppDatabase;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -54,6 +57,7 @@ public class Situation5 extends Fragment {
         }
 
         txtView.setText(text);
+        sitAct.setContent((String) txtView.getText());
 
         challengeButton.setOnClickListener(view -> sitAct.switchChallengeFragment());
 
