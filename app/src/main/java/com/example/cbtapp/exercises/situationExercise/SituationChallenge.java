@@ -63,6 +63,8 @@ public class SituationChallenge extends Fragment implements SelectListener{
             e.printStackTrace();
         }
 
+        sitAct.saveActivity();
+
         Intent intent = new Intent(sitAct, ThoughtRecordActivity.class);
         intent.putExtra("Thought", thoughts.get(position).getText());
         intent.putExtra("Belief", thoughts.get(position).getIntensity());

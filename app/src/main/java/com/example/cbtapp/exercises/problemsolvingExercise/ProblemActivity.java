@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
+import com.example.cbtapp.activityLog.DbCmd;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.situationExercise.Feel;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class ProblemActivity extends AppCompatActivity {
 
     String problemText;
+    String content;
     LocalDate date;
     ArrayList<Feel> feelings = new ArrayList<>();
     ArrayList<Solution> solutions = new ArrayList<>();
@@ -79,6 +81,8 @@ public class ProblemActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    DbCmd.saveActivityLog(date, "Problem Solving", content, this);
 
                     Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
@@ -145,6 +149,10 @@ public class ProblemActivity extends AppCompatActivity {
 
     public void setProblemText(String problemText) {
         this.problemText = problemText;
+    }
+
+    public void setContent(String content){
+        this.content = content;
     }
 
     public LocalDate getDate() {

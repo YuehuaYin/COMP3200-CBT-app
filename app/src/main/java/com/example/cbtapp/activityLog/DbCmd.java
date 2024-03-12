@@ -14,4 +14,9 @@ public class DbCmd {
         activityLog.content = content;
         db.userDao().insertLog(activityLog);
     }
+
+    public static void deleteAllLogs(Context context){
+        AppDatabase db = AppDatabase.getDbInstance(context.getApplicationContext());
+        db.userDao().deleteAll();
+    }
 }

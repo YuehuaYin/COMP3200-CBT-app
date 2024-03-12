@@ -11,12 +11,14 @@ import android.widget.TextView;
 import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
+import com.example.cbtapp.activityLog.DbCmd;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -55,7 +57,7 @@ public class StatsPage extends AppCompatActivity {
     void resetDataButton(){
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         builder.setTitle("Are you sure?");
-        builder.setMessage("This will delete all stats and journal entries.");
+        builder.setMessage("This will delete all data in the app.");
 
         builder.setPositiveButton("Yes", (dialogInterface, i) -> resetData());
 
@@ -65,10 +67,7 @@ public class StatsPage extends AppCompatActivity {
         dialog.show();
     }
 
-    void resetData(){
-        File path = getApplicationContext().getFilesDir();
-
-        Stats.readStats(new File(path, "StatsFile.txt"));
+    void resetData() {
         try {
             Stats.resetStats();
             FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
@@ -76,8 +75,9 @@ public class StatsPage extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         updateStats();
+
+        DbCmd.deleteAllLogs(this);
     }
 
     void updateStats(){

@@ -23,4 +23,7 @@ public interface UserDao {
 
     @Delete
     void deleteLog(ActivityLog activityLog);
+
+    @Query("DELETE FROM activitylog")
+    void deleteAll();
 }

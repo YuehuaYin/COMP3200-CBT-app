@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
+import com.example.cbtapp.activityLog.DbCmd;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.situationExercise.SituationChallenge;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class ThoughtRecordActivity extends AppCompatActivity {
 
     String thoughtText;
+    String content;
     LocalDate date;
     int belief = 5;
     String balancedThought;
@@ -91,6 +93,8 @@ public class ThoughtRecordActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    DbCmd.saveActivityLog(date, "Thought Record", content, this);
 
                     Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
@@ -162,6 +166,10 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
     public String getThoughtText() {
         return thoughtText;
+    }
+
+    public void setContent(String content){
+        this.content = content;
     }
 
     public void setThoughtText(String thoughtText) {

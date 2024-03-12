@@ -39,9 +39,6 @@ public class Problem5 extends Fragment {
         String text = "";
 
         txtView.setMovementMethod(new ScrollingMovementMethod());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            text = ("Date: " + probAct.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n\n");
-        }
 
         text += "Problem: " + probAct.getProblemText() +
                 "\n\nFeelings: ";
@@ -62,6 +59,7 @@ public class Problem5 extends Fragment {
         }
 
         txtView.setText(text);
+        probAct.setContent(text);
 
         return v;
     }

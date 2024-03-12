@@ -18,6 +18,7 @@ import com.example.cbtapp.stats.StatsPage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class HomeActivity extends AppCompatActivity {
     SwipeListener swipeListener;
@@ -37,7 +38,18 @@ public class HomeActivity extends AppCompatActivity {
         File path = getApplicationContext().getFilesDir();
         path.mkdirs();
 
-        Stats.readStats(new File(path, "StatsFile.txt"));
+        try {
+            Stats.readStats(new File(path, "StatsFile.txt"));
+        } catch (IOException e){
+            try {
+                Stats.resetStats();
+                FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
+                Stats.writeStats(writer);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
 
         currentPoints = findViewById(R.id.currentpoints);
         updateCurrentPoints();
@@ -86,11 +98,4 @@ public class HomeActivity extends AppCompatActivity {
         currentPoints.setText("Points: " + Stats.currentPoints);
     }
 
-    public  void addNewLog(){
-
-    }
-
-    public void addToLog(String type, String text){
-
-    }
 }

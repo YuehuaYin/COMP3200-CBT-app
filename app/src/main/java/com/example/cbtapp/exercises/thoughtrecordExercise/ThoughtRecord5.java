@@ -42,32 +42,27 @@ public class ThoughtRecord5 extends Fragment {
         String text = "";
 
         txtView.setMovementMethod(new ScrollingMovementMethod());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            text = ("Date: " + thoughtAct.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n\n");
-        }
+
         text += "Thought: " + thoughtAct.getThoughtText() +
                 "\nBelief in thought: " + thoughtAct.getBelief() +
                 "\n\nArguments:";
 
-        txtView.setText(text);
-
         ArrayList<Argument> args = thoughtAct.getArguments();
         for (Argument a:args) {
-
-            Spannable word = new SpannableString("\n" + a.getText());
-
             if (a.isFor()){
-                word.setSpan(new ForegroundColorSpan(Color.RED), 0, word.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                text += "\nFor: " + a.getText();
             }
             else {
-                word.setSpan(new ForegroundColorSpan(Color.GREEN), 0, word.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                text += "\nAgainst: " + a.getText();
             }
-
-            txtView.append(word);
         }
 
-        txtView.append("\n\nBalanced thought: " + thoughtAct.getBalancedThought() +
-                "\nBelief in balanced thought: " + thoughtAct.getBalancedBelief());
+        text += "\n\nBalanced thought: " + thoughtAct.getBalancedThought() +
+                "\nBelief in balanced thought: " + thoughtAct.getBalancedBelief();
+
+        txtView.setText(text);
+
+        thoughtAct.setContent(text);
 
         return v;
     }

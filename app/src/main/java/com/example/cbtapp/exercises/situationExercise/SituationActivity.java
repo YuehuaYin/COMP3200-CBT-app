@@ -69,6 +69,7 @@ public class SituationActivity extends AppCompatActivity {
                     currentStep++;
                     break;
                 case 5:
+                    System.out.println("done");
                     Stats.addExercisesDone();
                     Stats.addPoints(100);
                     try {
@@ -78,7 +79,7 @@ public class SituationActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    DbCmd.saveActivityLog(date, "situation", content, this);
+                    saveActivity();
 
                     Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
@@ -153,6 +154,10 @@ public class SituationActivity extends AppCompatActivity {
         TipDialog tipDialog = new TipDialog();
         tipDialog.setMessage(tips);
         tipDialog.show(getSupportFragmentManager(), "tip dialog");
+    }
+
+    public void saveActivity(){
+        DbCmd.saveActivityLog(date, "Situation", content, this);
     }
 
     public void setContent(String content){

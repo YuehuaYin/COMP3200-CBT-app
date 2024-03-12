@@ -2,6 +2,7 @@ package com.example.cbtapp.stats;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -15,22 +16,18 @@ public class Stats {
     public static int highestStreak;
     public static int dailyBonusClaimed;
 
-    public static void readStats (File statsFile) {
-        try {
-            byte[] content = new byte[(int) statsFile.length()];
-            FileInputStream reader = new FileInputStream(statsFile);
-            reader.read(content);
-            String[] strings = new String(content).split(" ");
-            currentPoints = Integer.parseInt(strings[0]);
-            totalPoints = Integer.parseInt(strings[1]);
-            exercisesDone = Integer.parseInt(strings[2]);
-            currentStreak = Integer.parseInt(strings[3]);
-            highestStreak = Integer.parseInt(strings[4]);
-            //dailyBonusClaimed = 0;
-            dailyBonusClaimed = Integer.parseInt(strings[5]);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void readStats (File statsFile) throws IOException {
+        byte[] content = new byte[(int) statsFile.length()];
+        FileInputStream reader = new FileInputStream(statsFile);
+        reader.read(content);
+        String[] strings = new String(content).split(" ");
+        currentPoints = Integer.parseInt(strings[0]);
+        totalPoints = Integer.parseInt(strings[1]);
+        exercisesDone = Integer.parseInt(strings[2]);
+        currentStreak = Integer.parseInt(strings[3]);
+        highestStreak = Integer.parseInt(strings[4]);
+        //dailyBonusClaimed = 0;
+        dailyBonusClaimed = Integer.parseInt(strings[5]);
     }
 
     public static void addPoints(int p){

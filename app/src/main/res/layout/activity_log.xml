@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="date"
-                android:textSize="18dp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/textView17"
@@ -35,7 +35,7 @@
                 android:paddingLeft="10dp"
                 android:text="type"
                 android:textAlignment="textEnd"
-                android:textSize="18dp" />
+                android:textSize="17sp" />
         </LinearLayout>
 
         <TextView

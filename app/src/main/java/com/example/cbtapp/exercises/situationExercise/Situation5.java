@@ -39,9 +39,6 @@ public class Situation5 extends Fragment {
         String text = "";
 
         txtView.setMovementMethod(new ScrollingMovementMethod());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            text = ("Date: " + sitAct.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n\n");
-        }
         text += "Situation: " + sitAct.getSitText() +
                 "\n\nFeelings: ";
 
@@ -57,7 +54,7 @@ public class Situation5 extends Fragment {
         }
 
         txtView.setText(text);
-        sitAct.setContent((String) txtView.getText());
+        sitAct.setContent(text);
 
         challengeButton.setOnClickListener(view -> sitAct.switchChallengeFragment());
 
