@@ -3,6 +3,8 @@ package com.example.cbtapp.stats;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -12,6 +14,7 @@ import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
 import com.example.cbtapp.activityLog.DbCmd;
+import com.example.cbtapp.collectables.CollectablesActivity;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,6 +22,8 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -77,15 +82,25 @@ public class StatsPage extends AppCompatActivity {
         }
         updateStats();
 
+        SharedPreferences sp = getSharedPreferences("CollectableProgress", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        List<String> spNameList = Arrays.asList("collect1", "collect2", "collect3", "collect4", "collect5", "collect6", "collect7", "collect8", "collect9");
+        for (String n:spNameList) {
+            editor.putBoolean(n, false);
+        }
+        editor.putInt("repeats", 0);
+
         DbCmd.deleteAllLogs(this);
     }
 
     void updateStats(){
-        pointsText.setText("Current points: " + Stats.currentPoints);
-        exercisesText.setText("Total points earned: " + Stats.totalPoints);
+        pointsText.setText("Current level: " + Stats.level);
+        exercisesText.setText("Current points: " + Stats.currentPoints);
         tasksText.setText("CBT exercises completed: " + Stats.exercisesDone);
+        // "Tasks completed: " + Stats.tasksCompleted
         currentStreakText.setText("Current streak: " + Stats.currentStreak);
         highestStreakText.setText("Highest streak: " + Stats.highestStreak);
+        // "Collectable progress: " +
     }
 
 }

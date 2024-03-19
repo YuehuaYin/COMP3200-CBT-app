@@ -6,7 +6,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.cbtapp.activityLog.CalenderLog;
+import com.example.cbtapp.collectables.CollectablesActivity;
 import com.example.cbtapp.exercises.ExercisesHome;
+import com.example.cbtapp.goals.GoalsActivity;
 import com.example.cbtapp.stats.StatsPage;
 
 public class NavBar {
@@ -25,6 +27,12 @@ public class NavBar {
             context.startActivity(intent);
         });
 
+        Button goalsButton = navBar.findViewById(R.id.navGoals);
+        goalsButton.setOnClickListener(view -> {
+            Intent intent = new Intent(context, GoalsActivity.class);
+            context.startActivity(intent);
+        });
+
         Button statsButton = navBar.findViewById(R.id.navStats);
         statsButton.setOnClickListener(view -> {
             Intent intent = new Intent(context, StatsPage.class);
@@ -34,6 +42,12 @@ public class NavBar {
         Button activityButton = navBar.findViewById(R.id.navActivity);
         activityButton.setOnClickListener(view -> {
             Intent intent = new Intent(context, CalenderLog.class);
+            context.startActivity(intent);
+        });
+
+        Button collectButton = navBar.findViewById(R.id.navAchievements);
+        collectButton.setOnClickListener(view -> {
+            Intent intent = new Intent(context, CollectablesActivity.class);
             context.startActivity(intent);
         });
 
