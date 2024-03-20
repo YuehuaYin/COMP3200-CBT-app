@@ -9,15 +9,20 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class TipDialog extends AppCompatDialogFragment {
 
+    String title;
     String message;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Tips:").setMessage(message).setPositiveButton("OK", (dialogInterface, i) -> {
+        builder.setTitle(title).setMessage(message).setPositiveButton("OK", (dialogInterface, i) -> {
 
         });
         return builder.create();
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setMessage(String message) {

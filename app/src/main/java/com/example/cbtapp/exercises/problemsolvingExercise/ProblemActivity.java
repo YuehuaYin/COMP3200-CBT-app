@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.activityLog.DbCmd;
+import com.example.cbtapp.collectables.CollectableRoll;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.situationExercise.Feel;
@@ -73,18 +74,21 @@ public class ProblemActivity extends AppCompatActivity {
                     currentStep++;
                     break;
                 case 5:
+                    Intent intent = new Intent(this, HomeActivity.class);
+
                     Stats.addExercisesDone();
-                    Stats.addPoints(100);
+                    if (Stats.addPoints(20)){
+                        intent.putExtra("levelup", true);
+                    }
+
                     try {
-                        FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
-                        Stats.writeStats(writer);
+                        Stats.writeStats(this);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     DbCmd.saveActivityLog(date, "Problem Solving", content, this);
 
-                    Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
                     break;
             }
@@ -139,6 +143,7 @@ public class ProblemActivity extends AppCompatActivity {
 
     public void showTip(String tips) {
         TipDialog tipDialog = new TipDialog();
+        tipDialog.setTitle("Tips:");
         tipDialog.setMessage(tips);
         tipDialog.show(getSupportFragmentManager(), "tip dialog");
     }

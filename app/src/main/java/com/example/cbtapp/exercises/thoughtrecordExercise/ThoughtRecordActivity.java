@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.activityLog.DbCmd;
+import com.example.cbtapp.collectables.CollectableRoll;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.situationExercise.SituationChallenge;
@@ -41,9 +42,18 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if(extras != null) {
-                thoughtText = extras.getString("Thought");
-                belief = extras.getInt("Belief");
+            if (extras != null) {
+                if (extras.getBoolean("levelup", false)) {
+                    findViewById(R.id.layout).post(() -> CollectableRoll.GACHATIME(getApplicationContext(), findViewById(R.id.layout), "Level up! You got:"));
+                }
+
+                if (extras.getString("Thought", null) != null) {
+                    thoughtText = extras.getString("Thought");
+                }
+
+                if (extras.getString("Belief", null) != null) {
+                    belief = extras.getInt("Belief");
+                }
             }
         }
 
@@ -85,18 +95,21 @@ public class ThoughtRecordActivity extends AppCompatActivity {
                     currentStep++;
                     break;
                 case 5:
+                    Intent intent = new Intent(this, HomeActivity.class);
+
                     Stats.addExercisesDone();
-                    Stats.addPoints(100);
+                    if (Stats.addPoints(20)){
+                        intent.putExtra("levelup", true);
+                    }
+
                     try {
-                        FileOutputStream writer = openFileOutput("StatsFile.txt", MODE_PRIVATE);
-                        Stats.writeStats(writer);
+                        Stats.writeStats(this);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
 
                     DbCmd.saveActivityLog(date, "Thought Record", content, this);
 
-                    Intent intent = new Intent(this, HomeActivity.class);
                     startActivity(intent);
                     break;
             }
@@ -152,6 +165,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
     public void showTip(String tips) {
         TipDialog tipDialog = new TipDialog();
+        tipDialog.setTitle("Tips:");
         tipDialog.setMessage(tips);
         tipDialog.show(getSupportFragmentManager(), "tip dialog");
     }

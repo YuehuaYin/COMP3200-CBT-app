@@ -9,29 +9,33 @@
 
     <ProgressBar
         android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyle"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="244dp"
         android:layout_height="247dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="70"
+        android:progressDrawable="@drawable/progress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
+        app:layout_constraintVertical_bias="0.716" />
 
     <TextView
         android:id="@+id/currentpoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="476dp"
-        android:layout_marginEnd="164dp"
         android:paddingStart="5dp"
         android:paddingTop="10dp"
         android:text="XX/100"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar2"
+        app:layout_constraintStart_toStartOf="@+id/progressBar2"
+        app:layout_constraintTop_toTopOf="@+id/progressBar2" />
 
     <TextView
         android:id="@+id/currentlevel"
@@ -42,11 +46,11 @@
         android:text="Level X"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.488" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView13"
@@ -63,7 +67,7 @@
         android:id="@+id/dailybonus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Claim daily bonus +20 points"
+        android:text="Claim daily bonus +10 points"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -88,7 +92,7 @@
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to <app name>!"
+        android:text="Welcome to app name!"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

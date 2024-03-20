@@ -34,15 +34,17 @@ public class CollectablesActivity extends AppCompatActivity {
     LinearLayout navBar;
     SwipeListener swipeListener;
     Button repeatRollButton;
-    ImageView image1 = findViewById(R.id.imageView13);
-    ImageView image2 = findViewById(R.id.imageView12);
-    ImageView image3 = findViewById(R.id.imageView11);
-    ImageView image4 = findViewById(R.id.imageView7);
-    ImageView image5 = findViewById(R.id.imageView6);
-    ImageView image6 = findViewById(R.id.imageView5);
-    ImageView image7 = findViewById(R.id.imageView);
-    ImageView image8 = findViewById(R.id.imageView2);
-    ImageView image9 = findViewById(R.id.imageView3);
+    ImageView image1;
+    ImageView image2;
+    ImageView image3;
+    ImageView image4;
+    ImageView image5;
+    ImageView image6;
+    ImageView image7;
+    ImageView image8;
+    ImageView image9;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class CollectablesActivity extends AppCompatActivity {
         NavBar.setUpNavbar(this, navBar);
         swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
 
-        SharedPreferences sp = getSharedPreferences("CollectableProgress", Context.MODE_PRIVATE);
+        sp = getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
+        editor = sp.edit();
 
         collect1 = sp.getBoolean("collect1", false);
         collect2 = sp.getBoolean("collect2", false);
@@ -64,6 +67,16 @@ public class CollectablesActivity extends AppCompatActivity {
         collect7 = sp.getBoolean("collect7", false);
         collect8 = sp.getBoolean("collect8", false);
         collect9 = sp.getBoolean("collect9", false);
+
+        image1 = findViewById(R.id.imageView13);
+        image2 = findViewById(R.id.imageView12);
+        image3 = findViewById(R.id.imageView11);
+        image4 = findViewById(R.id.imageView7);
+        image5 = findViewById(R.id.imageView6);
+        image6 = findViewById(R.id.imageView5);
+        image7 = findViewById(R.id.imageView);
+        image8 = findViewById(R.id.imageView2);
+        image9 = findViewById(R.id.imageView3);
 
         List<Boolean> boolList = Arrays.asList(collect1, collect2, collect3, collect4, collect5, collect6, collect7, collect8, collect9);
         List<ImageView> imageViewList = Arrays.asList(image1, image2, image3, image4, image5, image6, image7, image8, image9);
@@ -84,17 +97,18 @@ public class CollectablesActivity extends AppCompatActivity {
 
     void repeatRoll(){
         repeats -= 3;
+        editor.putInt("repeats", repeats);
+        editor.commit();
+        CollectableRoll.GACHATIME(this, findViewById(R.id.layout), "Repeat roll! You got:");
         updateButton();
     }
 
     void updateButton(){
+        repeats = sp.getInt("repeats", 0);
         repeatRollButton.setText("Exchange repeats for extra rolls \n Repeats: " + repeats + "/3");
-
         if (repeats < 3) {
             repeatRollButton.setEnabled(false);
             repeatRollButton.setTextColor(Color.GRAY);
         }
     }
-
-
 }

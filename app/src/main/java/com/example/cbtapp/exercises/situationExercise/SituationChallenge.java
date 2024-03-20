@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
+import com.example.cbtapp.collectables.CollectableRoll;
 import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
 import com.example.cbtapp.stats.Stats;
 
@@ -54,18 +55,21 @@ public class SituationChallenge extends Fragment implements SelectListener{
 
     @Override
     public void onItemClicked(int position) {
+        Intent intent = new Intent(sitAct, ThoughtRecordActivity.class);
+
         Stats.addExercisesDone();
-        Stats.addPoints(100);
+        if (Stats.addPoints(20)){
+            intent.putExtra("levelup", true);
+        }
+
         try {
-            FileOutputStream writer = sitAct.openFileOutput("StatsFile.txt", MODE_PRIVATE);
-            Stats.writeStats(writer);
+            Stats.writeStats(sitAct);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         sitAct.saveActivity();
 
-        Intent intent = new Intent(sitAct, ThoughtRecordActivity.class);
         intent.putExtra("Thought", thoughts.get(position).getText());
         intent.putExtra("Belief", thoughts.get(position).getIntensity());
         startActivity(intent);
