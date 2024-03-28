@@ -7,20 +7,15 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.activityLog.DbCmd;
-import com.example.cbtapp.collectables.CollectableRoll;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
-import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
 import com.example.cbtapp.stats.Stats;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

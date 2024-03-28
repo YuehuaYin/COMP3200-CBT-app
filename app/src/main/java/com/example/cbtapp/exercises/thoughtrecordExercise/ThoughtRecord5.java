@@ -1,12 +1,7 @@
 package com.example.cbtapp.exercises.thoughtrecordExercise;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.method.ScrollingMovementMethod;
-import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cbtapp.R;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ThoughtRecord5 extends Fragment {

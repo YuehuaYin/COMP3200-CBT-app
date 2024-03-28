@@ -11,15 +11,11 @@ import androidx.fragment.app.FragmentManager;
 import com.example.cbtapp.HomeActivity;
 import com.example.cbtapp.R;
 import com.example.cbtapp.activityLog.DbCmd;
-import com.example.cbtapp.collectables.CollectableRoll;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
 import com.example.cbtapp.exercises.situationExercise.Feel;
 import com.example.cbtapp.stats.Stats;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

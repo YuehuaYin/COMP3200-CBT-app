@@ -1,21 +1,19 @@
 package com.example.cbtapp.collectables;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

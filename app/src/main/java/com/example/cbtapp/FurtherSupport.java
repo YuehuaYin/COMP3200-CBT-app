@@ -1,26 +1,17 @@
 package com.example.cbtapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.cbtapp.activityLog.CalenderLog;
-import com.example.cbtapp.exercises.ExercisesHome;
-import com.example.cbtapp.stats.StatsPage;
-
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FurtherSupport extends AppCompatActivity {
 
@@ -41,8 +32,7 @@ public class FurtherSupport extends AppCompatActivity {
 
         emergencyText = findViewById(R.id.textView28);
         SpannableString emergText = new SpannableString("If you are experiencing suicidal thoughts or need help urgently, call 999 now.");
-        ClickableSpan clickableSpan1 = new ClickableSpan()
-        {
+        ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -56,8 +46,7 @@ public class FurtherSupport extends AppCompatActivity {
 
         samaritansText = findViewById(R.id.textView31);
         SpannableString samText = new SpannableString("Calling the Samaritans at 116123");
-        ClickableSpan clickableSpan2 = new ClickableSpan()
-        {
+        ClickableSpan clickableSpan2 = new ClickableSpan() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -71,8 +60,7 @@ public class FurtherSupport extends AppCompatActivity {
 
         ttText = findViewById(R.id.textView32);
         SpannableString linkText = new SpannableString("NHS Talking Therapies");
-        ClickableSpan clickableSpan3 = new ClickableSpan()
-        {
+        ClickableSpan clickableSpan3 = new ClickableSpan() {
             @Override
             public void onClick(View v) {
                 System.out.println("clicked");
@@ -83,18 +71,5 @@ public class FurtherSupport extends AppCompatActivity {
         linkText.setSpan(clickableSpan3, 0, linkText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         ttText.setText(linkText);
         ttText.setMovementMethod(LinkMovementMethod.getInstance());
-
-
-        /**
-         * navBar = findViewById(R.id.navBar);
-         *         NavBar.setUpNavbar(this, navBar);
-         *         swipeListener = new SwipeListener(findViewById(R.id.layout), navBar);
-         */
     }
-
-
-    /**
-     * Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-     * startActivity(browserIntent);
-     */
 }

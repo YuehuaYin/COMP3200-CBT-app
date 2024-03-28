@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cbtapp.R;
 
-import org.w3c.dom.Text;
-
 public class Problem1 extends Fragment {
     View v;
     TextView titleText;

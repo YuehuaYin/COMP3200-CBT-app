@@ -2,7 +2,6 @@ package com.example.cbtapp.exercises;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatDialogFragment;

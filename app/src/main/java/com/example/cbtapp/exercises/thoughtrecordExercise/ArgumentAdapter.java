@@ -1,17 +1,12 @@
 package com.example.cbtapp.exercises.thoughtrecordExercise;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
-import com.example.cbtapp.exercises.problemsolvingExercise.Solution;
-import com.example.cbtapp.exercises.problemsolvingExercise.SolutionHolder;
 
 import java.util.ArrayList;
 

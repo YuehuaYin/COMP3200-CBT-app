@@ -3,11 +3,9 @@ package com.example.cbtapp.exercises.thoughtrecordExercise;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.cbtapp.HomeActivity;
@@ -16,10 +14,8 @@ import com.example.cbtapp.activityLog.DbCmd;
 import com.example.cbtapp.collectables.CollectableRoll;
 import com.example.cbtapp.exercises.ExercisesHome;
 import com.example.cbtapp.exercises.TipDialog;
-import com.example.cbtapp.exercises.situationExercise.SituationChallenge;
 import com.example.cbtapp.stats.Stats;
 
-import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

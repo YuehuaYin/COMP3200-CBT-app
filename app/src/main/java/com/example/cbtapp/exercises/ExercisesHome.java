@@ -1,22 +1,18 @@
 package com.example.cbtapp.exercises;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.cbtapp.HomeActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
-import com.example.cbtapp.activityLog.CalenderLog;
 import com.example.cbtapp.exercises.problemsolvingExercise.ProblemActivity;
 import com.example.cbtapp.exercises.situationExercise.SituationActivity;
 import com.example.cbtapp.exercises.thoughtrecordExercise.ThoughtRecordActivity;
-import com.example.cbtapp.stats.StatsPage;
 
 public class ExercisesHome extends AppCompatActivity {
     SwipeListener swipeListener;

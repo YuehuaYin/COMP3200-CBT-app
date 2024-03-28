@@ -3,16 +3,11 @@ package com.example.cbtapp.stats;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
-import android.os.Build;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
 
 public class Stats {
     public static int level;

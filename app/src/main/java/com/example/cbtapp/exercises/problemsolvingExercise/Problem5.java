@@ -1,6 +1,5 @@
 package com.example.cbtapp.exercises.problemsolvingExercise;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -13,9 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.situationExercise.Feel;
-import com.example.cbtapp.exercises.situationExercise.SituationActivity;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Problem5 extends Fragment {

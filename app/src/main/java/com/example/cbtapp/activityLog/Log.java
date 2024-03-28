@@ -1,9 +1,7 @@
 package com.example.cbtapp.activityLog;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.example.cbtapp.R;
 
 public class Log extends AppCompatActivity {

@@ -22,7 +22,4 @@ public class Feel {
         return intensity;
     }
 
-    public void setIntensity(int intensity) {
-        this.intensity = intensity;
-    }
 }

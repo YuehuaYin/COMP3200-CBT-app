@@ -1,10 +1,8 @@
 package com.example.cbtapp.exercises.situationExercise;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.SeekBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cbtapp.R;
 

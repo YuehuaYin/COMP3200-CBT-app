@@ -1,15 +1,11 @@
 package com.example.cbtapp;
 
-import android.content.Intent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-
-import com.example.cbtapp.exercises.situationExercise.SituationActivity;
 
 // based on https://www.youtube.com/watch?v=vNJyU-XW8_Y
 public class SwipeListener implements View.OnTouchListener{
