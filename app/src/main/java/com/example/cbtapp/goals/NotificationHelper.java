@@ -21,8 +21,11 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.example.cbtapp.R;
+import com.example.cbtapp.exercises.problemsolvingExercise.Solution;
+import com.example.cbtapp.exercises.problemsolvingExercise.SolutionAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class NotificationHelper {
@@ -71,7 +74,7 @@ public class NotificationHelper {
         mNotificationManager.notify(0 /* Request Code */, mBuilder.build());
     }
 
-    public static void NotificationSetterPopup(Context context, View parent) {
+    public static void NotificationSetterPopup(Context context, View parent, Solution solution, SolutionAdapter adapter) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.notificationpopup, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 1500, false);
@@ -90,7 +93,19 @@ public class NotificationHelper {
         ToggleButton friButton = popupView.findViewById(R.id.toggleButton5);
         ToggleButton satButton = popupView.findViewById(R.id.toggleButton6);
         ToggleButton sunButton = popupView.findViewById(R.id.toggleButton7);
+        List<ToggleButton> buttonList = Arrays.asList(monButton, tuesButton, wedButton, thursButton, friButton, satButton, sunButton);
 
+        // set popup vars to existing notification if one exists
+        if (solution.hasNotif){
+            timePicker.setHour(solution.notification.hour);
+            timePicker.setMinute(solution.notification.minute);
+            repeatText.setText(String.valueOf(solution.notification.weeksRepeating));
+            for (int i = 0; i < 7; i++) {
+                buttonList.get(i).setChecked(solution.notification.daysSelected.get(i));
+            }
+        }
+
+        // button listeners
         Button cancelButton = popupView.findViewById(R.id.button10);
         cancelButton.setOnClickListener(v -> popupWindow.dismiss());
 
@@ -98,6 +113,8 @@ public class NotificationHelper {
         okButton.setOnClickListener(v -> {
 
             Integer repeating = Integer.parseInt(repeatText.getText().toString());
+            Integer hour = timePicker.getHour();
+            Integer min = timePicker.getMinute();
 
             List<Boolean> daysSelected = new ArrayList<>();
             daysSelected.add(monButton.isChecked());
@@ -109,6 +126,11 @@ public class NotificationHelper {
             daysSelected.add(sunButton.isChecked());
 
             // create notification
+            solution.notification = new Notification(hour, min, repeating, daysSelected);
+            solution.hasNotif = true;
+
+            adapter.notifyDataSetChanged();
+            popupWindow.dismiss();
         });
     }
 }

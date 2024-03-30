@@ -2,11 +2,13 @@ package com.example.cbtapp.exercises.problemsolvingExercise;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
+import com.example.cbtapp.goals.NotificationHelper;
 
 import java.util.ArrayList;
 
@@ -14,10 +16,12 @@ public class SolutionAdapter extends RecyclerView.Adapter<SolutionHolder> {
 
     Context context;
     ArrayList<Solution> solutions;
+    View parentLayout;
 
-    public SolutionAdapter(Context context, ArrayList<Solution> solutions) {
+    public SolutionAdapter(Context context, ArrayList<Solution> solutions, View parent) {
         this.context = context;
         this.solutions = solutions;
+        this.parentLayout = parent;
     }
 
     @Override
@@ -35,6 +39,7 @@ public class SolutionAdapter extends RecyclerView.Adapter<SolutionHolder> {
         else {
             holder.button.setText("Add notification");
         }
+        holder.button.setOnClickListener(v -> NotificationHelper.NotificationSetterPopup(context, parentLayout, s, this));
     }
 
     @Override

@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Problem4 extends Fragment {
-
-    // reference:
     View v;
     RecyclerView recyclerView;
     ArrayList<Solution> solutions;
@@ -27,6 +25,7 @@ public class Problem4 extends Fragment {
     Button tipButton;
     SolutionAdapter adapter;
     int dragItemIndex;
+    ProblemActivity problemActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,10 +33,11 @@ public class Problem4 extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_problem4, container, false);
 
-        solutions = ((ProblemActivity) getActivity()).getSolutions();
+        problemActivity = ((ProblemActivity) getActivity());
+        solutions = problemActivity.getSolutions();
 
         recyclerView = v.findViewById(R.id.recyclerview);
-        adapter = new SolutionAdapter(getContext(), solutions);
+        adapter = new SolutionAdapter(getContext(), solutions, problemActivity.findViewById(R.id.layout));
         addSolutionComponents();
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
@@ -77,9 +77,7 @@ public class Problem4 extends Fragment {
         });
 
         tipButton = v.findViewById(R.id.button3);
-        tipButton.setOnClickListener(view -> {
-            ((ProblemActivity) getActivity()).showTip("Problem tip");
-        });
+        tipButton.setOnClickListener(view -> problemActivity.showTip("Problem tip"));
 
         return v;
     }
@@ -90,7 +88,7 @@ public class Problem4 extends Fragment {
 
         for (int i = 0; i < recyclerView.getChildCount(); i++) {
             v = recyclerView.getChildAt(i);
-            et = (EditText) v.findViewById(R.id.txt);
+            et = v.findViewById(R.id.txt);
             solutions.add(new Solution(et.getText().toString()));
         }
     }
@@ -98,7 +96,7 @@ public class Problem4 extends Fragment {
     @Override
     public void onStop() {
         updateVars();
-        ((ProblemActivity) getActivity()).setSolutions(solutions);
+        problemActivity.setSolutions(solutions);
         super.onStop();
     }
 

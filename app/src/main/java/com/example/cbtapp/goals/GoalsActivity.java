@@ -12,7 +12,5 @@ public class GoalsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goals);
-
-        findViewById(R.id.layout).post(() -> NotificationHelper.NotificationSetterPopup(getApplicationContext(), findViewById(R.id.layout)));
     }
 }
