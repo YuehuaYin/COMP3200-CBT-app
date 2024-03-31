@@ -42,10 +42,6 @@ public class Stats {
         }
     }
 
-    public static void addTaskComplete(){
-        tasksCompleted += 1;
-    }
-
     public static void addExercisesDone(){
         exercisesDone += 1;
     }

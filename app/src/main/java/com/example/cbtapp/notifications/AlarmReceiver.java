@@ -1,4 +1,4 @@
-package com.example.cbtapp.goals;
+package com.example.cbtapp.notifications;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

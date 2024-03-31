@@ -1,4 +1,4 @@
-package com.example.cbtapp.goals;
+package com.example.cbtapp.notifications;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -21,6 +21,7 @@ import android.widget.ToggleButton;
 import androidx.core.app.NotificationCompat;
 
 import com.example.cbtapp.R;
+import com.example.cbtapp.activityLog.DbCmd;
 import com.example.cbtapp.exercises.problemsolvingExercise.Solution;
 import com.example.cbtapp.exercises.problemsolvingExercise.SolutionAdapter;
 
@@ -40,7 +41,7 @@ public class NotificationHelper {
     void createNotification()
     {
 
-        Intent intent = new Intent(context , GoalsActivity.class);
+        Intent intent = new Intent(context , NotificationsActivity.class);
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -95,19 +96,28 @@ public class NotificationHelper {
         ToggleButton sunButton = popupView.findViewById(R.id.toggleButton7);
         List<ToggleButton> buttonList = Arrays.asList(monButton, tuesButton, wedButton, thursButton, friButton, satButton, sunButton);
 
-        // set popup vars to existing notification if one exists
+        // set vars to existing notification if one exists
         if (solution.hasNotif){
-            timePicker.setHour(solution.notification.hour);
-            timePicker.setMinute(solution.notification.minute);
-            repeatText.setText(String.valueOf(solution.notification.weeksRepeating));
+            timePicker.setHour(solution.notifhour);
+            timePicker.setMinute(solution.notifmin);
+            repeatText.setText(String.valueOf(solution.notifrepeating));
             for (int i = 0; i < 7; i++) {
-                buttonList.get(i).setChecked(solution.notification.daysSelected.get(i));
+                buttonList.get(i).setChecked(solution.getDaysSelected().get(i));
             }
         }
 
         // button listeners
         Button cancelButton = popupView.findViewById(R.id.button10);
-        cancelButton.setOnClickListener(v -> popupWindow.dismiss());
+        if (solution.hasNotif){
+            cancelButton.setText("Delete");
+        }
+        cancelButton.setOnClickListener(v -> {
+            if (solution.hasNotif){
+                solution.resetNotif();
+                DbCmd.deleteSolution(solution.uid, context);
+            }
+            popupWindow.dismiss();
+        });
 
         Button okButton = popupView.findViewById(R.id.button27);
         okButton.setOnClickListener(v -> {
@@ -126,8 +136,10 @@ public class NotificationHelper {
             daysSelected.add(sunButton.isChecked());
 
             // create notification
-            solution.notification = new Notification(hour, min, repeating, daysSelected);
+            solution.setNotifVars(hour, min, repeating, daysSelected);
             solution.hasNotif = true;
+
+            DbCmd.saveSolution(solution, context);
 
             adapter.notifyDataSetChanged();
             popupWindow.dismiss();

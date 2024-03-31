@@ -97,6 +97,7 @@ public class StatsPage extends AppCompatActivity {
         editor.commit();
 
         DbCmd.deleteAllLogs(this);
+        DbCmd.deleteAllSolutions(this);
     }
 
     Integer getcollectableprogress(){
@@ -118,7 +119,6 @@ public class StatsPage extends AppCompatActivity {
         levelText.setText("Current level: " + Stats.level);
         pointsText.setText("Current points: " + Stats.currentPoints);
         exercisesText.setText("CBT exercises completed: " + Stats.exercisesDone);
-        tasksText.setText("Tasks completed: " + Stats.tasksCompleted);
         currentStreakText.setText("Current streak: " + Stats.currentStreak);
         highestStreakText.setText("Highest streak: " + Stats.highestStreak);
         collectableText.setText("Collectable progress: " + collectableNum + "/9");

@@ -77,16 +77,6 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView30"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="10dp"
-            android:text="Tasks completed: "
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/textView31"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

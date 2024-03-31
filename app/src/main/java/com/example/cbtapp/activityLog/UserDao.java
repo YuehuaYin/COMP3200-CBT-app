@@ -1,17 +1,15 @@
 package com.example.cbtapp.activityLog;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.example.cbtapp.exercises.problemsolvingExercise.Solution;
 
 import java.util.List;
 
 @Dao
 public interface UserDao {
-
-    @Query("SELECT * FROM activityLog")
-    List<ActivityLog> getAllLogs();
 
     @Query("SELECT date FROM activityLog")
     List<String> getAllDates();
@@ -22,6 +20,18 @@ public interface UserDao {
     @Insert
     void insertLog(ActivityLog... activityLogs);
 
+    @Insert
+    void insertSol(Solution... solutions);
+
+    @Query("SELECT * FROM solution")
+    List<Solution> getAllSols();
+
     @Query("DELETE FROM activitylog")
-    void deleteAll();
+    void deleteAllLogs();
+
+    @Query("DELETE FROM solution")
+    void deleteAllSols();
+
+    @Query("DELETE FROM solution WHERE uid==:userId")
+    void deleteSol(int userId);
 }

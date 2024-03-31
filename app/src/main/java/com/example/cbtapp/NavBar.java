@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import com.example.cbtapp.activityLog.CalenderLog;
 import com.example.cbtapp.collectables.CollectablesActivity;
 import com.example.cbtapp.exercises.ExercisesHome;
-import com.example.cbtapp.goals.GoalsActivity;
+import com.example.cbtapp.notifications.NotificationsActivity;
 import com.example.cbtapp.stats.StatsPage;
 
 public class NavBar {
@@ -29,7 +29,7 @@ public class NavBar {
 
         Button goalsButton = navBar.findViewById(R.id.navGoals);
         goalsButton.setOnClickListener(view -> {
-            Intent intent = new Intent(context, GoalsActivity.class);
+            Intent intent = new Intent(context, NotificationsActivity.class);
             context.startActivity(intent);
         });
 

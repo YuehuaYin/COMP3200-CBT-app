@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
+import com.example.cbtapp.activityLog.DbCmd;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,9 +61,7 @@ public class Problem4 extends Fragment {
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                    solutions.remove(viewHolder.getAdapterPosition());
-                    adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             }
         });
 
@@ -70,9 +70,7 @@ public class Problem4 extends Fragment {
         addSolutions = v.findViewById(R.id.button2);
         addSolutions.setOnClickListener(view -> {
             updateVars();
-
             solutions.add(new Solution("Possible solution"));
-
             addSolutionComponents();
         });
 
@@ -87,8 +85,8 @@ public class Problem4 extends Fragment {
         EditText et;
 
         for (int i = 0; i < recyclerView.getChildCount(); i++) {
-            v = recyclerView.getChildAt(i);
-            et = v.findViewById(R.id.txt);
+            View v2 = recyclerView.getChildAt(i);
+            et = v2.findViewById(R.id.txt);
             solutions.add(new Solution(et.getText().toString()));
         }
     }

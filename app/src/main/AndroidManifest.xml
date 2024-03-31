@@ -17,7 +17,7 @@
         android:theme="@style/Theme.CBTApp"
         tools:targetApi="31">
         <activity
-            android:name=".goals.GoalsActivity"
+            android:name=".notifications.NotificationsActivity"
             android:exported="false" />
         <activity
             android:name=".collectables.CollectablesActivity"
@@ -80,7 +80,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".goals.AlarmReceiver" />
+        <receiver android:name=".notifications.AlarmReceiver" />
     </application>
 
 </manifest>

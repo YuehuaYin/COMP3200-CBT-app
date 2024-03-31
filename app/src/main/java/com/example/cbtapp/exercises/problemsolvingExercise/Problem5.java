@@ -14,6 +14,8 @@ import com.example.cbtapp.R;
 import com.example.cbtapp.exercises.situationExercise.Feel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Problem5 extends Fragment {
     View v;
@@ -51,7 +53,14 @@ public class Problem5 extends Fragment {
         for (Solution s: solutions) {
             text += "\n" + s.getText();
             if (s.hasNotif){
-                text += "\t\t\t\t\t\t\t\t\tNotification: ";
+                text += "\t\t\t\t\t\t\t\t\tNotification: " + s.notifhour + ":" + s.notifmin + " on ";
+                List<String> dayList = Arrays.asList("M", "Tu", "W", "Th", "F", "Sa", "Su");
+                for (int i = 0; i < 7; i++) {
+                    if (s.getDaysSelected().get(i)){
+                        text += dayList.get(i) + " ";
+                    }
+                }
+                text += "for " + s.notifrepeating + " weeks";
             }
         }
 

@@ -5,8 +5,11 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
-@Database(entities = {ActivityLog.class}, version = 1)
+import com.example.cbtapp.exercises.problemsolvingExercise.Solution;
+
+@Database(entities = {ActivityLog.class, Solution.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     private static AppDatabase INSTANCE;
@@ -16,7 +19,6 @@ public abstract class AppDatabase extends RoomDatabase {
                     .allowMainThreadQueries()
                     .build();
         }
-
         return INSTANCE;
     }
 }

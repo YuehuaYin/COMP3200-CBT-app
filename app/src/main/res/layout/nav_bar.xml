@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#DCDCDC"
-        android:text="Goals"
+        android:text="Notifications"
         android:textColor="#000000"
         android:textSize="20sp" />
 
@@ -39,7 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#DCDCDC"
-        android:text="CBT exercises"
+        android:text="CBT Exercises"
         android:textColor="#000000"
         android:textSize="20sp" />
 

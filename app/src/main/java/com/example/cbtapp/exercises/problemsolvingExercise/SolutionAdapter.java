@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
-import com.example.cbtapp.goals.NotificationHelper;
+import com.example.cbtapp.notifications.NotificationHelper;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,10 @@ public class SolutionAdapter extends RecyclerView.Adapter<SolutionHolder> {
         else {
             holder.button.setText("Add notification");
         }
-        holder.button.setOnClickListener(v -> NotificationHelper.NotificationSetterPopup(context, parentLayout, s, this));
+        holder.button.setOnClickListener(v -> {
+            s.text = holder.editText.getText().toString();
+            NotificationHelper.NotificationSetterPopup(context, parentLayout, s, this);
+        });
     }
 
     @Override
