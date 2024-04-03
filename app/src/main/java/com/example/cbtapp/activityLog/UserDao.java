@@ -11,9 +11,6 @@ import java.util.List;
 @Dao
 public interface UserDao {
 
-    @Query("SELECT date FROM activityLog")
-    List<String> getAllDates();
-
     @Query("SELECT * FROM activitylog WHERE date==:date")
     List<ActivityLog> getLogs(String date);
 

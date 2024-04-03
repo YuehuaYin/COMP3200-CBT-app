@@ -14,7 +14,7 @@
         android:paddingTop="15sp"
         android:text="Home"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/navActivity"
@@ -23,7 +23,7 @@
         android:backgroundTint="#DCDCDC"
         android:text="Activity Log"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/navGoals"
@@ -32,7 +32,7 @@
         android:backgroundTint="#DCDCDC"
         android:text="Notifications"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/navExercises"
@@ -41,7 +41,7 @@
         android:backgroundTint="#DCDCDC"
         android:text="CBT Exercises"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/navAchievements"
@@ -50,7 +50,7 @@
         android:backgroundTint="#DCDCDC"
         android:text="Collectables"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/navStats"
@@ -59,7 +59,7 @@
         android:backgroundTint="#DCDCDC"
         android:text="Stats"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/navSupport"
@@ -68,6 +68,6 @@
         android:backgroundTint="#DCDCDC"
         android:text="Further Support"
         android:textColor="#000000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

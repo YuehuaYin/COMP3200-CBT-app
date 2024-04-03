@@ -25,6 +25,8 @@ public class Problem1 extends Fragment {
         titleText.setText("Problem Solving");
 
         bodyText = v.findViewById(R.id.textView);
+        bodyText.setText("When dealing with a current and realistic worry, a problem solving approach can be helpful for making the problem seem more manageable. First identify the problem, then identify how this problem is making you feel. Afterwards, list possible solutions and add notifications to prompt you to achieve them.");
+
         return v;
     }
 }

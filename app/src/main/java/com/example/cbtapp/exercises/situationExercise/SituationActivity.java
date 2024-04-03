@@ -25,6 +25,7 @@ public class SituationActivity extends AppCompatActivity {
     String content;
     ArrayList<Feel> feelings = new ArrayList<>();
     ArrayList<Feel> thoughts = new ArrayList<>();
+    ArrayList<Feel> behaviours = new ArrayList<>();
     int currentStep;
     Button nextButton;
     FragmentManager fragmentManager;
@@ -61,10 +62,14 @@ public class SituationActivity extends AppCompatActivity {
                     break;
                 case 4:
                     switchTo = Situation5.class;
-                    nextButton.setText("Finish");
                     currentStep++;
                     break;
                 case 5:
+                    switchTo = Situation6.class;
+                    nextButton.setText("Finish");
+                    currentStep++;
+                    break;
+                case 6:
                     Intent intent = new Intent(this, HomeActivity.class);
 
                     Stats.addExercisesDone();
@@ -117,11 +122,15 @@ public class SituationActivity extends AppCompatActivity {
                     break;
                 case 5:
                     switchTo = Situation4.class;
+                    currentStep--;
+                    break;
+                case 6:
+                    switchTo = Situation5.class;
                     nextButton.setText("Next");
                     currentStep--;
                     break;
                 case 9:
-                    switchTo = Situation5.class;
+                    switchTo = Situation6.class;
                     nextButton.setVisibility(View.VISIBLE);
                     currentStep--;
                     break;
@@ -188,5 +197,13 @@ public class SituationActivity extends AppCompatActivity {
 
     public void setSitText(String sitText) {
         this.sitText = sitText;
+    }
+
+    public ArrayList<Feel> getBehaviours() {
+        return behaviours;
+    }
+
+    public void setBehaviours(ArrayList<Feel> behaviours) {
+        this.behaviours = behaviours;
     }
 }

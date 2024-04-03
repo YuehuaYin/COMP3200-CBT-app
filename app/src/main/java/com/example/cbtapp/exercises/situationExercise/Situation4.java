@@ -45,9 +45,14 @@ public class Situation4 extends Fragment {
         });
 
         tipButton = v.findViewById(R.id.button3);
-        tipButton.setOnClickListener(view -> {
-            ((SituationActivity) getActivity()).showTip("Situation tip");
-        });
+        tipButton.setOnClickListener(view -> ((SituationActivity) getActivity()).showTip("Not sure what you were thinking? Try asking yourself these questions: " +
+                "\n-What was going through my mind at the time?" +
+                "\n-What images or memories did I have in my mind?" +
+                "\n-What did I think this meant about me? My life? My future?" +
+                "\n-What was I afraid might happen?" +
+                "\n-What did I think this meant about how the others feel/think about me?" +
+                "\n-What did I think this meant about other people or people in general? "
+        ));
 
         return v;
     }

@@ -66,9 +66,7 @@ public class ThoughtRecord3 extends Fragment {
         });
 
         tipButton = v.findViewById(R.id.button);
-        tipButton.setOnClickListener(view -> {
-            ((ThoughtRecordActivity) getActivity()).showTip("Thought record tip");
-        });
+        tipButton.setOnClickListener(view -> ((ThoughtRecordActivity) getActivity()).showTip("Try to find factual evidence that contradicts your negative thought. Try asking yourself these questions to help: \n-If a friend told you they were thinking this way, what would you say to them? \n-Do I have any past experience that might suggest my thought is not 100% true? \n-Are there any small pieces of information I may be ignoring? Or any strengths/qualities about myself? \n-If I were feeling positively, would I still think this way? Why/ why not?"));
 
         return v;
     }

@@ -15,7 +15,6 @@ import com.example.cbtapp.SwipeListener;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CalenderLog extends AppCompatActivity {
     SwipeListener swipeListener;
@@ -42,9 +41,6 @@ public class CalenderLog extends AppCompatActivity {
             loadActivityLogs(LocalDate.now());
         }
 
-        // TODO: make dates with activity have a background
-        List<String> datesWithLog = new ArrayList<>(db.userDao().getAllDates());
-
         calendarView = findViewById(R.id.calendarView);
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
@@ -67,6 +63,4 @@ public class CalenderLog extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
     }
-
-
 }

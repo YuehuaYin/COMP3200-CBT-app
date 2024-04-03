@@ -74,7 +74,7 @@ public class Problem4 extends Fragment {
         });
 
         tipButton = v.findViewById(R.id.button3);
-        tipButton.setOnClickListener(view -> problemActivity.showTip("Problem tip"));
+        tipButton.setOnClickListener(view -> problemActivity.showTip("Identify any possible solutions you can think of for now, no matter what downsides they may have. Don't dismiss any possible solutions - afterwards, try to think of pros and cons for each solution and rank your solutions by dragging and dropping them. You can add notifications to motivate yourself (they will be added to the Notifications page)"));
 
         return v;
     }

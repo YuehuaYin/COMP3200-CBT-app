@@ -118,7 +118,7 @@ public class HomeActivity extends AppCompatActivity {
     private void showAppInfo() {
         TipDialog tipDialog = new TipDialog();
         tipDialog.setTitle("Information:");
-        tipDialog.setMessage("placeholder text");
+        tipDialog.setMessage("This app is designed to guide users through digital cognitive behavioural therapy exercises with the goal of improving the users' wellbeing. It is not meant as a replacement for therapy and you should seek further support if needed. This app features: \n\n-3 CBT exercises based on NHS resources \n-Points, levels and daily streaks to encourage engagement \n-Collectables to earn through levelling up \n-Activity log to store and view completed exercises \n-Notifications that users can set to motivate themselves");
         tipDialog.show(getSupportFragmentManager(), "tip dialog");
     }
 

@@ -25,6 +25,8 @@ public class ThoughtRecord1 extends Fragment {
         titleText.setText("Thought Record");
 
         bodyText = v.findViewById(R.id.textView);
+        bodyText.setText("When you feel low or anxious, you may experience unrealistic/extreme negative thoughts. These can be due to cognitive distortions such as overgeneralising or catastrophising. To help manage these thoughts, this exercise prompts you to argue for and against the negative thought as if you were using a text messaging app. \n\nThe aim of this is to help you see past the distortion and form a more balanced and reasonable thought based on facts.");
+
         return v;
     }
 }

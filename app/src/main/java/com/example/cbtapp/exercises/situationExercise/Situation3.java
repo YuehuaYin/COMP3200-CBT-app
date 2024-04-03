@@ -54,7 +54,7 @@ public class Situation3 extends Fragment {
 
         for (int i = 0; i < recyclerView.getChildCount(); i++) {
             v = recyclerView.getChildAt(i);
-            et = (EditText) v.findViewById(R.id.editTextfeeling);
+            et = v.findViewById(R.id.editTextfeeling);
             sb = v.findViewById(R.id.seekBar3);
             feelings.add(new Feel(et.getText().toString(), sb.getProgress()));
         }

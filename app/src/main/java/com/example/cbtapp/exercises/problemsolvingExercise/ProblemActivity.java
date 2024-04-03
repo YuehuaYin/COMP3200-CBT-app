@@ -123,6 +123,7 @@ public class ProblemActivity extends AppCompatActivity {
                     break;
                 case 5:
                     switchTo = Problem4.class;
+                    nextButton.setText("Next");
                     currentStep--;
                     break;
             }
