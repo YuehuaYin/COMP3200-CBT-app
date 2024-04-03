@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
-import com.example.cbtapp.activityLog.DbCmd;
 
 import java.util.ArrayList;
 import java.util.Collections;

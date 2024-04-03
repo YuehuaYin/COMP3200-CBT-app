@@ -37,7 +37,7 @@ public class ThoughtRecord3 extends Fragment {
 
         args = ((ThoughtRecordActivity)getActivity()).getArguments();
 
-        recyclerView = v.findViewById(R.id.recyclerView);
+        recyclerView = v.findViewById(R.id.recyclerview);
         adapter = new ArgumentAdapter(getContext(), args);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);

@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity
@@ -27,7 +27,7 @@ public class Solution {
     public Integer notifmin;
 
     @ColumnInfo(name = "notifrepeating")
-    public Integer notifrepeating;
+    public Integer notifrepeating = 1;
 
     @ColumnInfo(name = "notifmon")
     public Boolean notifmon = false;
@@ -50,6 +50,9 @@ public class Solution {
     @ColumnInfo(name = "notifsun")
     public Boolean notifsun = false;
 
+    @ColumnInfo(name = "notifsetday")
+    public int notifsetday;
+
     public Solution(String text) {
         this.text = text;
     }
@@ -64,13 +67,15 @@ public class Solution {
         this.notifhour = hour;
         this.notifmin = min;
         this.notifrepeating = repeating;
-        notifmon = days.get(0);
-        notiftue = days.get(1);
-        notifwed = days.get(2);
-        notifthur = days.get(3);
-        notiffri = days.get(4);
-        notifsat = days.get(5);
-        notifsun = days.get(6);
+        notifsun = days.get(0);
+        notifmon = days.get(1);
+        notiftue = days.get(2);
+        notifwed = days.get(3);
+        notifthur = days.get(4);
+        notiffri = days.get(5);
+        notifsat = days.get(6);
+        Calendar calendar = Calendar.getInstance();
+        notifsetday = calendar.get(Calendar.DAY_OF_WEEK);
     }
 
     public void resetNotif(){
@@ -88,6 +93,6 @@ public class Solution {
     }
 
     public List<Boolean> getDaysSelected(){
-        return Arrays.asList(notifmon, notiftue, notifwed, notifthur, notiffri, notifsat, notifsun);
+        return Arrays.asList(notifsun, notifmon, notiftue, notifwed, notifthur, notiffri, notifsat);
     }
 }

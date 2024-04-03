@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,21 +48,12 @@ public class CalenderLog extends AppCompatActivity {
         calendarView = findViewById(R.id.calendarView);
 
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            LocalDate date = null;
-            String monthStr = String.valueOf(month + 1);
-            String dayStr = String.valueOf(dayOfMonth);
-
-            if (month < 10) {
-                monthStr = "0" + monthStr;
-            }
-            if (dayOfMonth < 10){
-                dayStr = "0" + dayStr;
-            }
-
+            String monthStr = String.format("%02d",month + 1);
+            String dayStr = String.format("%02d",dayOfMonth);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                date = LocalDate.parse(year + "-" + monthStr + "-" + dayStr);
+                LocalDate date = LocalDate.parse(year + "-" + monthStr + "-" + dayStr);
+                loadActivityLogs(date);
             }
-            loadActivityLogs(date);
         });
 
     }

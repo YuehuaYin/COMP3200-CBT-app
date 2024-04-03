@@ -34,4 +34,7 @@ public interface UserDao {
 
     @Query("DELETE FROM solution WHERE uid==:userId")
     void deleteSol(int userId);
+
+    @Query("SELECT * FROM solution WHERE text==:solText")
+    Solution getSol(String solText);
 }

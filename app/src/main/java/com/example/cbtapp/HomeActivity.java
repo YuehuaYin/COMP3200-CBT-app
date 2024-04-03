@@ -145,5 +145,4 @@ public class HomeActivity extends AppCompatActivity {
     void updateCurrentLevel(){
         currentLevel.setText("Level " + Stats.level);
     }
-
 }

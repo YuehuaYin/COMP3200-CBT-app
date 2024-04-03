@@ -1,14 +1,10 @@
 package com.example.cbtapp.notifications;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +20,6 @@ import java.util.ArrayList;
 public class NotificationsActivity extends AppCompatActivity {
 
     Button newNotifButton;
-    Button recommededButton;
     RecyclerView recyclerView;
     ArrayList<Solution> notifList;
     SolutionAdapter adapter;
@@ -45,35 +40,20 @@ public class NotificationsActivity extends AppCompatActivity {
             notifList = new ArrayList<>();
         }
 
-        recyclerView = findViewById(R.id.recyclerView4);
-        adapter = new SolutionAdapter(this, notifList, findViewById(R.id.layout));
+        recyclerView = findViewById(R.id.recyclerview);
         addSolutionComponents();
 
         newNotifButton = findViewById(R.id.button17);
         newNotifButton.setOnClickListener(view -> {
-            updateVars();
+            notifList = (ArrayList<Solution>) DbCmd.getAllSolutions(this);
             notifList.add(new Solution("New notification"));
+            adapter = new SolutionAdapter(this, notifList, findViewById(R.id.layout));
             addSolutionComponents();
         });
-
-        recommededButton = findViewById(R.id.button19);
-        recommededButton.setOnClickListener(v -> {
-
-        });
-    }
-
-    void updateVars(){
-        notifList.clear();
-        EditText et;
-
-        for (int i = 0; i < recyclerView.getChildCount(); i++) {
-            View v = recyclerView.getChildAt(i);
-            et = v.findViewById(R.id.txt);
-            notifList.add(new Solution(et.getText().toString()));
-        }
     }
 
     public void addSolutionComponents(){
+        adapter = new SolutionAdapter(this, notifList, findViewById(R.id.layout));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

@@ -14,6 +14,8 @@ import com.example.cbtapp.NavBar;
 import com.example.cbtapp.R;
 import com.example.cbtapp.SwipeListener;
 import com.example.cbtapp.activityLog.DbCmd;
+import com.example.cbtapp.exercises.problemsolvingExercise.Solution;
+import com.example.cbtapp.notifications.AlarmScheduler;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -95,6 +97,13 @@ public class StatsPage extends AppCompatActivity {
         }
         editor.putInt("repeats", 0);
         editor.commit();
+
+        AlarmScheduler alarmScheduler = new AlarmScheduler(this);
+
+        List<Solution> alarms = DbCmd.getAllSolutions(this);
+        for (Solution a : alarms) {
+            alarmScheduler.cancel(a);
+        }
 
         DbCmd.deleteAllLogs(this);
         DbCmd.deleteAllSolutions(this);

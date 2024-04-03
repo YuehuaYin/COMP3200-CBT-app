@@ -42,4 +42,9 @@ public class DbCmd {
         AppDatabase db = AppDatabase.getDbInstance(context.getApplicationContext());
         return db.userDao().getAllSols();
     }
+
+    public static Solution getSolution(String solText, Context context){
+        AppDatabase db = AppDatabase.getDbInstance(context.getApplicationContext());
+        return db.userDao().getSol(solText);
+    }
 }
