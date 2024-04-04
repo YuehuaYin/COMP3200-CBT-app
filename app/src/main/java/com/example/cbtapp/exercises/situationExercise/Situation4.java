@@ -40,7 +40,7 @@ public class Situation4 extends Fragment {
         addthoughtButton.setOnClickListener(view -> {
             updateVars();
 
-            thoughts.add(new Feel("Thought " + (thoughts.size() + 1), 5));
+            thoughts.add(new Feel("Thought " + (thoughts.size() + 1), 5, "Intensity"));
             addThoughtComponents();
         });
 
@@ -66,7 +66,7 @@ public class Situation4 extends Fragment {
             v = recyclerView.getChildAt(i);
             et = v.findViewById(R.id.editTextfeeling);
             sb = v.findViewById(R.id.seekBar3);
-            thoughts.add(new Feel(et.getText().toString(), sb.getProgress()));
+            thoughts.add(new Feel(et.getText().toString(), sb.getProgress(), "Intensity"));
         }
     }
 

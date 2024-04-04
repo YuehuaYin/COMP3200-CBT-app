@@ -38,13 +38,12 @@ public class Situation5 extends Fragment {
         addThoughtComponents();
 
         TextView titleText = v.findViewById(R.id.situationTxt2);
-        titleText.setText("How did you do or not do in reaction to the situation?");
+        titleText.setText("What did you do or not do?");
 
         addthoughtButton = v.findViewById(R.id.button2);
         addthoughtButton.setOnClickListener(view -> {
             updateVars();
-
-            thoughts.add(new Feel("Behaviour " + (thoughts.size() + 1), 5));
+            thoughts.add(new Feel("Behaviour " + (thoughts.size() + 1), 5, "How happy are you that you did this?"));
             addThoughtComponents();
         });
 
@@ -55,15 +54,12 @@ public class Situation5 extends Fragment {
         thoughts.clear();
         EditText et;
         SeekBar sb;
-        TextView tv;
 
         for (int i = 0; i < recyclerView.getChildCount(); i++) {
             v = recyclerView.getChildAt(i);
             et = v.findViewById(R.id.editTextfeeling);
             sb = v.findViewById(R.id.seekBar3);
-            thoughts.add(new Feel(et.getText().toString(), sb.getProgress()));
-            tv = v.findViewById(R.id.textView6);
-            tv.setText("How happy are you that you did this?");
+            thoughts.add(new Feel(et.getText().toString(), sb.getProgress(), "How happy are you that you did this?"));
         }
     }
 

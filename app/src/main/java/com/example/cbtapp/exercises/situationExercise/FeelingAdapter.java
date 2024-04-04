@@ -15,7 +15,6 @@ public class FeelingAdapter extends RecyclerView.Adapter<FeelingHolder> {
     // reference: https://www.youtube.com/watch?v=aUFdgLSEl0g
     Context context;
     ArrayList<Feel> feelings;
-    SelectListener listener;
 
     public FeelingAdapter(Context context, ArrayList<Feel> feelings) {
         this.context = context;
@@ -31,6 +30,7 @@ public class FeelingAdapter extends RecyclerView.Adapter<FeelingHolder> {
     public void onBindViewHolder(FeelingHolder holder, int position) {
         holder.feelingText.setText(feelings.get(position).getText());
         holder.seekBar.setProgress(feelings.get(position).getIntensity());
+        holder.seekBarTxt.setText(feelings.get(position).getSeekBarTxt());
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.example.cbtapp.exercises.problemsolvingExercise.SolutionAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class NotificationHelper {
@@ -52,6 +53,10 @@ public class NotificationHelper {
             for (int i = 0; i < 7; i++) {
                 buttonList.get(i).setChecked(solution.getDaysSelected().get(i));
             }
+        } else {
+            Calendar calendar = Calendar.getInstance();
+            int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
+            buttonList.get(currentDay-1).setChecked(true);
         }
 
         // button listeners

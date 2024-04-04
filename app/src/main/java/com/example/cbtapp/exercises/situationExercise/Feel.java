@@ -4,10 +4,12 @@ public class Feel {
 
     String text;
     int intensity;
+    String seekBarTxt;
 
-    public Feel(String text, int intensity) {
+    public Feel(String text, int intensity, String seekBarTxt) {
         this.text = text;
         this.intensity = intensity;
+        this.seekBarTxt = seekBarTxt;
     }
 
     public String getText() {
@@ -22,4 +24,7 @@ public class Feel {
         return intensity;
     }
 
+    public String getSeekBarTxt() {
+        return seekBarTxt;
+    }
 }

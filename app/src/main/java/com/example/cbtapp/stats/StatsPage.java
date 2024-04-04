@@ -126,7 +126,11 @@ public class StatsPage extends AppCompatActivity {
 
     void updateStats(){
         levelText.setText("Current level: " + Stats.level);
-        pointsText.setText("Current points: " + Stats.currentPoints);
+        int totalPoints = Stats.currentPoints;
+        for (int i = 0; i < Stats.level; i++) {
+            totalPoints += Stats.level * 40 + 20;
+        }
+        pointsText.setText("Total points: " + totalPoints);
         exercisesText.setText("CBT exercises completed: " + Stats.exercisesDone);
         currentStreakText.setText("Current streak: " + Stats.currentStreak);
         highestStreakText.setText("Highest streak: " + Stats.highestStreak);

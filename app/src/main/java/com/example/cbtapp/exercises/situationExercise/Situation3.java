@@ -40,7 +40,7 @@ public class Situation3 extends Fragment {
         addFeelingButton.setOnClickListener(view -> {
             updateVars();
 
-            feelings.add(new Feel("Feeling " + (feelings.size() + 1), 5));
+            feelings.add(new Feel("Feeling " + (feelings.size() + 1), 5, "Intensity"));
             addFeelingComponents();
         });
 
@@ -56,7 +56,7 @@ public class Situation3 extends Fragment {
             v = recyclerView.getChildAt(i);
             et = v.findViewById(R.id.editTextfeeling);
             sb = v.findViewById(R.id.seekBar3);
-            feelings.add(new Feel(et.getText().toString(), sb.getProgress()));
+            feelings.add(new Feel(et.getText().toString(), sb.getProgress(), "Intensity"));
         }
     }
 

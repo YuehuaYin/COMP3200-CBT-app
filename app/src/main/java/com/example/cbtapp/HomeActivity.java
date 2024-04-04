@@ -138,8 +138,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     void updateCurrentPoints(){
-        currentPoints.setText(Stats.currentPoints + "/100");
-        progressCircle.setProgress(Stats.currentPoints);
+        currentPoints.setText(Stats.currentPoints + "/" + Stats.toNextLevel);
+        float percentage = (float) Stats.currentPoints / (float) Stats.toNextLevel * 100;
+        System.out.println(percentage);
+        progressCircle.setProgress((int) percentage);
     }
 
     void updateCurrentLevel(){

@@ -16,6 +16,7 @@ public class Stats {
     public static int tasksCompleted;
     public static int currentStreak;
     public static int highestStreak;
+    public static int toNextLevel;
 
     public static void readStats (File statsFile) throws IOException {
         byte[] content = new byte[(int) statsFile.length()];
@@ -28,13 +29,15 @@ public class Stats {
         tasksCompleted = Integer.parseInt(strings[3]);
         currentStreak = Integer.parseInt(strings[4]);
         highestStreak = Integer.parseInt(strings[5]);
+        toNextLevel = level * 40 + 20;
     }
 
     public static boolean addPoints(int p){
         currentPoints += p;
-        if (currentPoints >= 100){
+        if (currentPoints >= toNextLevel){
             level += 1;
-            currentPoints -= 100;
+            currentPoints -= toNextLevel;
+            toNextLevel = level * 40 + 20;
             return true;
         }
         else {
@@ -62,6 +65,7 @@ public class Stats {
         tasksCompleted = 0;
         currentStreak = 0;
         highestStreak = 0;
+        toNextLevel = 20;
     }
 
     public static void writeStats(Context context) throws IOException {
