@@ -35,7 +35,9 @@ public class ThoughtRecord3 extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_thought_record3, container, false);
 
-        args = ((ThoughtRecordActivity)getActivity()).getArguments();
+        ThoughtRecordActivity thoughtRecordActivity = (ThoughtRecordActivity) getActivity();
+
+        args = thoughtRecordActivity.getArguments();
 
         recyclerView = v.findViewById(R.id.recyclerview);
         adapter = new ArgumentAdapter(getContext(), args);
@@ -63,10 +65,15 @@ public class ThoughtRecord3 extends Fragment {
                 currentlyFor = true;
                 title.setText("Arguing for thought:");
             }
+
+            if(!thoughtRecordActivity.getSwitchedSides()){
+                thoughtRecordActivity.activateNextButton();
+                thoughtRecordActivity.setSwitchedSides(true);
+            }
         });
 
         tipButton = v.findViewById(R.id.button);
-        tipButton.setOnClickListener(view -> ((ThoughtRecordActivity) getActivity()).showTip("Try to find factual evidence that contradicts your negative thought. Try asking yourself these questions to help: \n-If a friend told you they were thinking this way, what would you say to them? \n-Do I have any past experience that might suggest my thought is not 100% true? \n-Are there any small pieces of information I may be ignoring? Or any strengths/qualities about myself? \n-If I were feeling positively, would I still think this way? Why/ why not?"));
+        tipButton.setOnClickListener(view -> thoughtRecordActivity.showTip("Try to find factual evidence that contradicts your negative thought. Try asking yourself these questions to help: \n-If a friend told you they were thinking this way, what would you say to them? \n-Do I have any past experience that might suggest my thought is not 100% true? \n-Are there any small pieces of information I may be ignoring? Or any strengths/qualities about myself? \n-If I were feeling positively, would I still think this way? Why/ why not?"));
 
         return v;
     }

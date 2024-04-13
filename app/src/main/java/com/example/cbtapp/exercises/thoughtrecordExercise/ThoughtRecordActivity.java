@@ -30,6 +30,8 @@ public class ThoughtRecordActivity extends AppCompatActivity {
     int currentStep;
     FragmentManager fragmentManager;
     ArrayList<Argument> arguments = new ArrayList<>();
+    Boolean switchedSides = false;
+    Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
         currentStep = 1;
 
-        Button nextButton = findViewById(R.id.nextButton);
+        nextButton = findViewById(R.id.nextButton);
         nextButton.setOnClickListener(view -> {
 
             Class switchTo = null;
@@ -79,6 +81,9 @@ public class ThoughtRecordActivity extends AppCompatActivity {
                     break;
                 case 2:
                     switchTo = ThoughtRecord3.class;
+                    if (!switchedSides){
+                        nextButton.setEnabled(false);
+                    }
                     currentStep++;
                     break;
                 case 3:
@@ -212,5 +217,17 @@ public class ThoughtRecordActivity extends AppCompatActivity {
 
     public void setBalancedBelief(int balancedBelief) {
         this.balancedBelief = balancedBelief;
+    }
+
+    public Boolean getSwitchedSides() {
+        return switchedSides;
+    }
+
+    public void setSwitchedSides(Boolean switchedSides) {
+        this.switchedSides = switchedSides;
+    }
+
+    public void activateNextButton(){
+        nextButton.setEnabled(true);
     }
 }

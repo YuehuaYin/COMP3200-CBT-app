@@ -113,6 +113,8 @@ public class HomeActivity extends AppCompatActivity {
 
         Button infoButton = findViewById(R.id.button14);
         infoButton.setOnClickListener(v -> showAppInfo());
+
+        showAppInfo();
     }
 
     private void showAppInfo() {

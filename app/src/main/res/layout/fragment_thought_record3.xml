@@ -44,6 +44,7 @@
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#E13F29"
         android:text="Switch sides"
         android:textSize="13dp"
         app:layout_constraintBottom_toTopOf="@+id/textView14"
