@@ -26,6 +26,7 @@ public class SituationActivity extends AppCompatActivity {
     ArrayList<Feel> feelings = new ArrayList<>();
     ArrayList<Feel> thoughts = new ArrayList<>();
     ArrayList<Feel> behaviours = new ArrayList<>();
+    ArrayList<Feel> reactions = new ArrayList<>();
     int currentStep;
     Button nextButton;
     FragmentManager fragmentManager;
@@ -66,10 +67,14 @@ public class SituationActivity extends AppCompatActivity {
                     break;
                 case 5:
                     switchTo = Situation6.class;
-                    nextButton.setText("Finish");
                     currentStep++;
                     break;
                 case 6:
+                    switchTo = Situation7.class;
+                    nextButton.setText("Finish");
+                    currentStep++;
+                    break;
+                case 7:
                     Intent intent = new Intent(this, HomeActivity.class);
 
                     Stats.addExercisesDone();
@@ -126,11 +131,15 @@ public class SituationActivity extends AppCompatActivity {
                     break;
                 case 6:
                     switchTo = Situation5.class;
+                    currentStep--;
+                    break;
+                case 7:
+                    switchTo = Situation6.class;
                     nextButton.setText("Next");
                     currentStep--;
                     break;
                 case 9:
-                    switchTo = Situation6.class;
+                    switchTo = Situation7.class;
                     nextButton.setVisibility(View.VISIBLE);
                     currentStep--;
                     break;
@@ -205,5 +214,13 @@ public class SituationActivity extends AppCompatActivity {
 
     public void setBehaviours(ArrayList<Feel> behaviours) {
         this.behaviours = behaviours;
+    }
+
+    public ArrayList<Feel> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(ArrayList<Feel> reactions) {
+        this.reactions = reactions;
     }
 }

@@ -38,7 +38,7 @@ public class Situation5 extends Fragment {
         addThoughtComponents();
 
         TextView titleText = v.findViewById(R.id.situationTxt2);
-        titleText.setText("What did you do or not do?");
+        titleText.setText("What did you do in response to the situation?");
 
         addthoughtButton = v.findViewById(R.id.button2);
         addthoughtButton.setOnClickListener(view -> {

@@ -1,14 +1,17 @@
 package com.example.cbtapp.exercises.situationExercise;
 
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cbtapp.R;
 
@@ -17,48 +20,59 @@ import java.util.ArrayList;
 public class Situation6 extends Fragment {
 
     View v;
-    TextView txtView;
-    Button challengeButton;
-    SituationActivity sitAct;
+    Button addthoughtButton;
+    RecyclerView recyclerView;
+    ArrayList<Feel> thoughts;
+    FeelingAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_situation5, container, false);
+        v = inflater.inflate(R.layout.fragment_situation3, container, false);
 
-        sitAct = ((SituationActivity)getActivity());
-        txtView = v.findViewById(R.id.textView3);
-        challengeButton = v.findViewById(R.id.button4);
+        thoughts = ((SituationActivity)getActivity()).getReactions();
 
-        String text = "";
+        recyclerView = v.findViewById(R.id.recyclerview);
+        adapter = new FeelingAdapter(getContext(), thoughts);
+        addThoughtComponents();
 
-        txtView.setMovementMethod(new ScrollingMovementMethod());
-        text += "Situation: " + sitAct.getSitText() +
-                "\n\nFeelings: ";
+        TextView titleText = v.findViewById(R.id.situationTxt2);
+        titleText.setText("What physical reactions did you notice?");
 
-        ArrayList<Feel> feelings = sitAct.getFeelings();
-        for (int i = 0; i < feelings.size(); i++) {
-            text += "\n" + feelings.get(i).getText() + "\t\t\t\t\t\t\t\t\tIntensity: " + feelings.get(i).getIntensity();
-        }
-
-        text += "\n\nThoughts:";
-        ArrayList<Feel> thoughts = sitAct.getThoughts();
-        for (int i = 0; i < thoughts.size(); i++) {
-            text += "\n" + thoughts.get(i).getText() + "\t\t\t\t\t\t\t\t\tIntensity: " + thoughts.get(i).getIntensity();
-        }
-
-        text += "\n\nBehaviours:";
-        ArrayList<Feel> behaviours = sitAct.getBehaviours();
-        for (int i = 0; i < behaviours.size(); i++) {
-            text += "\n" + behaviours.get(i).getText() + "\t\t\t\t\t\t\t\t\tRating: " + behaviours.get(i).getIntensity();
-        }
-
-        txtView.setText(text);
-        sitAct.setContent(text);
-
-        challengeButton.setOnClickListener(view -> sitAct.switchChallengeFragment());
+        addthoughtButton = v.findViewById(R.id.button2);
+        addthoughtButton.setOnClickListener(view -> {
+            updateVars();
+            thoughts.add(new Feel("Reaction " + (thoughts.size() + 1), 5, "Intensity"));
+            addThoughtComponents();
+        });
 
         return v;
+    }
+
+    void updateVars(){
+        thoughts.clear();
+        EditText et;
+        SeekBar sb;
+
+        for (int i = 0; i < recyclerView.getChildCount(); i++) {
+            v = recyclerView.getChildAt(i);
+            et = v.findViewById(R.id.editTextfeeling);
+            sb = v.findViewById(R.id.seekBar3);
+            thoughts.add(new Feel(et.getText().toString(), sb.getProgress(), "Intensity"));
+        }
+    }
+
+    @Override
+    public void onStop() {
+        updateVars();
+        ((SituationActivity) getActivity()).setReactions(thoughts);
+        super.onStop();
+    }
+
+    public void addThoughtComponents(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 }
