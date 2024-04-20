@@ -17,14 +17,14 @@ public interface UserDao {
     @Insert
     void insertLog(ActivityLog... activityLogs);
 
-    @Query("DELETE FROM activitylog")
-    void deleteAllLogs();
+    @Insert
+    void insertSol(Solution... solutions);
 
     @Query("SELECT * FROM solution")
     List<Solution> getAllSols();
 
-    @Insert
-    void insertSol(Solution... solutions);
+    @Query("DELETE FROM activitylog")
+    void deleteAllLogs();
 
     @Query("DELETE FROM solution")
     void deleteAllSols();

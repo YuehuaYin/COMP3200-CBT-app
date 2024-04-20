@@ -74,6 +74,9 @@ public class HomeActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             System.out.println(LocalDate.now().toString());
             dailyBonusClaimed = sp.getBoolean(LocalDate.now().toString(), false);
+            if (!dailyBonusClaimed){
+                showAppInfo();
+            }
             LocalDate yesterday = LocalDate.now().minusDays(1);
             if (sp.getBoolean(yesterday.toString(), false)) {
                 Stats.resetStreak();
@@ -113,8 +116,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Button infoButton = findViewById(R.id.button14);
         infoButton.setOnClickListener(v -> showAppInfo());
-
-        showAppInfo();
     }
 
     private void showAppInfo() {
